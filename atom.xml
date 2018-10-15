@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>plgy_y</title>
+  <subtitle>plgy_y的Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-10-15T08:05:35.909Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>yangyuan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/10/15/hello-world/"/>
+    <id>http://yoursite.com/2018/10/15/hello-world/</id>
+    <published>2018-10-15T08:05:35.909Z</published>
+    <updated>2018-10-15T08:05:35.909Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="quick-start"><a class="header-anchor" href="#quick-start">¶</a>Quick Start</h2>
+<h3 id="create-a-new-post"><a class="header-anchor" href="#create-a-new-post">¶</a>Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="run-server"><a class="header-anchor" href="#run-server">¶</a>Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="generate-static-files"><a class="header-anchor" href="#generate-static-files">¶</a>Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="header-anchor" href="#deploy-to-remote-sites">¶</a>Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SpringAOP原理</title>
+    <link href="http://yoursite.com/2018/10/01/SpringAOP%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2018/10/01/SpringAOP原理/</id>
+    <published>2018-10-01T15:06:32.000Z</published>
+    <updated>2018-10-15T09:06:21.286Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="aop-aspect-orientedprogramming-面向切面编程-可以说是oop-object-oriented-programing-面向对象编程-的补充和完善"><a class="header-anchor" href="#aop-aspect-orientedprogramming-面向切面编程-可以说是oop-object-oriented-programing-面向对象编程-的补充和完善">¶</a>AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。</h5>
+<h3 id="aop使用场景"><a class="header-anchor" href="#aop使用场景">¶</a>AOP使用场景</h3>
+<ul>
+<li>权限</li>
+<li>缓存</li>
+<li>内容传递</li>
+<li>错误处理</li>
+<li>懒加载</li>
+<li>调试</li>
+<li>记录跟踪 优化 校准</li>
+<li>持久化</li>
+<li>资源池</li>
+<li>同步</li>
+<li>事务</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;aop-aspect-orientedprogramming-面向切面编程-可以说是oop-object-oriented-programing-面向对象编程-的补充和完善&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#aop-aspect-o
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
+    
+      <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github 提交代码 Emoji</title>
+    <link href="http://yoursite.com/2017/08/09/Git/GithubEmoji/"/>
+    <id>http://yoursite.com/2017/08/09/Git/GithubEmoji/</id>
+    <published>2017-08-09T15:55:41.000Z</published>
+    <updated>2018-10-15T08:05:35.888Z</updated>
+    
+    <content type="html"><![CDATA[<p>An emoji guide for your commit messages: <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="external">gitmoji</a></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Emoji</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:art:</code></td>
+<td>🎨</td>
+<td>改进代码的结构/格式</td>
+</tr>
+<tr>
+<td><code>:zap:</code></td>
+<td>⚡️</td>
+<td>提高性能</td>
+</tr>
+<tr>
+<td><code>:fire:</code></td>
+<td>🔥</td>
+<td>删除代码或文件</td>
+</tr>
+<tr>
+<td><code>:bug:</code></td>
+<td>🐛</td>
+<td>修复bug</td>
+</tr>
+<tr>
+<td><code>:ambulance:</code></td>
+<td>🚑</td>
+<td>关键修补程序</td>
+</tr>
+<tr>
+<td><code>:sparkles:</code></td>
+<td>✨</td>
+<td>引入新功能</td>
+</tr>
+<tr>
+<td><code>:memo:</code></td>
+<td>📝</td>
+<td>写文档</td>
+</tr>
+<tr>
+<td><code>:rocket:</code></td>
+<td>🚀</td>
+<td>部署项目</td>
+</tr>
+<tr>
+<td><code>:lipstick:</code></td>
+<td>💄</td>
+<td>更新UI和样式文件</td>
+</tr>
+<tr>
+<td><code>:tada:</code></td>
+<td>🎉</td>
+<td>初始提交</td>
+</tr>
+<tr>
+<td><code>:white_check_mark:</code></td>
+<td>✅</td>
+<td>添加测试</td>
+</tr>
+<tr>
+<td><code>:lock:</code></td>
+<td>🔒</td>
+<td>解决安全问题</td>
+</tr>
+<tr>
+<td><code>:apple:</code></td>
+<td>🍎</td>
+<td>修改 macOS 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:penguin:</code></td>
+<td>🐧</td>
+<td>修改 Linux 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:checkered_flag:</code></td>
+<td>🏁</td>
+<td>修改 Windows 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:robot:</code></td>
+<td>🤖</td>
+<td>修改 Android 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:green_apple:</code></td>
+<td>🍏</td>
+<td>修改 IOS 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:bookmark:</code></td>
+<td>🔖</td>
+<td>发布版本标签</td>
+</tr>
+<tr>
+<td><code>:rotating_light:</code></td>
+<td>🚨</td>
+<td>移除 linter 警告</td>
+</tr>
+<tr>
+<td><code>:construction:</code></td>
+<td>🚧</td>
+<td>工作正在进行中</td>
+</tr>
+<tr>
+<td><code>:green_heart:</code></td>
+<td>💚</td>
+<td>修复CI构建</td>
+</tr>
+<tr>
+<td><code>:arrow_down:</code></td>
+<td>⬇️</td>
+<td>降级依赖</td>
+</tr>
+<tr>
+<td><code>:arrow_up:</code></td>
+<td>⬆️</td>
+<td>更新依赖</td>
+</tr>
+<tr>
+<td><code>:construction_worker:</code></td>
+<td>👷</td>
+<td>添加CI构建系统</td>
+</tr>
+<tr>
+<td><code>:chart_with_upwards_trend:</code></td>
+<td>📈</td>
+<td>添加分析或跟踪代码</td>
+</tr>
+<tr>
+<td><code>:hammer:</code></td>
+<td>🔨</td>
+<td>重构代码</td>
+</tr>
+<tr>
+<td><code>:heavy_minus_sign:</code></td>
+<td>➖</td>
+<td>删除依赖关系</td>
+</tr>
+<tr>
+<td><code>:whale:</code></td>
+<td>🐳</td>
+<td>关于Docker的工作</td>
+</tr>
+<tr>
+<td><code>:heavy_plus_sign:</code></td>
+<td>➕</td>
+<td>添加依赖关系</td>
+</tr>
+<tr>
+<td><code>:wrench:</code></td>
+<td>🔧</td>
+<td>更改配置文件</td>
+</tr>
+<tr>
+<td><code>:globe_with_meridians:</code></td>
+<td>🌐</td>
+<td>国际化和本地化</td>
+</tr>
+<tr>
+<td><code>:pencil2:</code></td>
+<td>✏️</td>
+<td>修正打字错误</td>
+</tr>
+<tr>
+<td><code>:hankey:</code></td>
+<td>💩</td>
+<td>编写不好的代码，需要改进</td>
+</tr>
+<tr>
+<td><code>:rewind:</code></td>
+<td>⏪</td>
+<td>还原更改</td>
+</tr>
+<tr>
+<td><code>:twisted_rightwards_arrows:</code></td>
+<td>🔀</td>
+<td>合并分支</td>
+</tr>
+<tr>
+<td><code>:package:</code></td>
+<td>📦</td>
+<td>更新已编译的文件或包</td>
+</tr>
+<tr>
+<td><code>:alien:</code></td>
+<td>👽</td>
+<td>由于外部API更改而更新代码</td>
+</tr>
+<tr>
+<td><code>:truck:</code></td>
+<td>🚚</td>
+<td>移动或重命名文件</td>
+</tr>
+<tr>
+<td><code>:page_facing_up:</code></td>
+<td>📄</td>
+<td>添加或更新许可证</td>
+</tr>
+<tr>
+<td><code>:boom:</code></td>
+<td>💥</td>
+<td>引入爆炸改变</td>
+</tr>
+<tr>
+<td><code>:bento:</code></td>
+<td>🍱</td>
+<td>添加或更新资源</td>
+</tr>
+<tr>
+<td><code>:ok_hand:</code></td>
+<td>👌</td>
+<td>由于代码审查更改而更新代码</td>
+</tr>
+<tr>
+<td><code>:wheelchair:</code></td>
+<td>♿️</td>
+<td>改善无障碍</td>
+</tr>
+<tr>
+<td><code>:bulb:</code></td>
+<td>💡</td>
+<td>文档化源代码</td>
+</tr>
+<tr>
+<td><code>:beers:</code></td>
+<td>🍻</td>
+<td>沉迷写代码</td>
+</tr>
+<tr>
+<td><code>:speech_balloon:</code></td>
+<td>💬</td>
+<td>更新文本和常量</td>
+</tr>
+<tr>
+<td><code>:card_file_box:</code></td>
+<td>🗃</td>
+<td>执行数据库相关更改</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;An emoji guide for your commit messages: &lt;a href=&quot;https://gitmoji.carloscuesta.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gitmoji&lt;/a&gt;&lt;/p&gt;
+&lt;table
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+</feed>
