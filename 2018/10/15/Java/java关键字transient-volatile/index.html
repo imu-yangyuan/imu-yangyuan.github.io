@@ -1,4 +1,79 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="yangyuan"><meta name="description" content="plgy_y的Blog"><link rel="alternative" href="/atom.xml" title="plgy_y" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>java关键字transient,volatile - plgy_y</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">plgy_y</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-10-15T10:30:53.000Z">October 15, 2018</time><h1 class="post__title"><a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a></h1><div class="post__main echo"><h3 id="被transient关键字修饰的变量不会被序列化"><a href="#被transient关键字修饰的变量不会被序列化" class="headerlink" title="被transient关键字修饰的变量不会被序列化"></a>被transient关键字修饰的变量不会被序列化</h3><h3 id="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"><a href="#被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性" class="headerlink" title="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"></a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3><h2 id="被volatile关键字修饰的变量的，具有以下两点特性："><a href="#被volatile关键字修饰的变量的，具有以下两点特性：" class="headerlink" title="被volatile关键字修饰的变量的，具有以下两点特性："></a>被volatile关键字修饰的变量的，具有以下两点特性：</h2><ol>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>java关键字transient,volatile | plgy_y</title>
+  <meta name="author" content="yangyuan" />
+
+  
+  <meta name="description" content="plgy_y的Blog" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="java关键字transient,volatile" />
+  <meta property="og:site_name" content="plgy_y" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="plgy_y" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">plgy_y</a></h1>
+  <h2><a href="/">plgy_y的Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-15T10:30:53.000Z"><a href="/2018/10/15/Java/java关键字transient-volatile/">2018-10-15</a></time>
+      
+      
+  
+    <h1 class="title">java关键字transient,volatile</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="被transient关键字修饰的变量不会被序列化"><a href="#被transient关键字修饰的变量不会被序列化" class="headerlink" title="被transient关键字修饰的变量不会被序列化"></a>被transient关键字修饰的变量不会被序列化</h3><h3 id="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"><a href="#被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性" class="headerlink" title="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"></a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3><h2 id="被volatile关键字修饰的变量的，具有以下两点特性："><a href="#被volatile关键字修饰的变量的，具有以下两点特性：" class="headerlink" title="被volatile关键字修饰的变量的，具有以下两点特性："></a>被volatile关键字修饰的变量的，具有以下两点特性：</h2><ol>
 <li>保证了不同线程对该变量操作的内存可见性，不保证原子性。</li>
 <li>禁止指令重排序</li>
 </ol>
@@ -19,4 +94,113 @@
 <li>状态位</li>
 <li>一个线程写，多个线程读的场景</li>
 </ul>
-</div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 yangyuan</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
+      </li>
+    
+      <li>
+        <a href="/2018/10/15/hello-world/">Hello World</a>
+      </li>
+    
+      <li>
+        <a href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a>
+      </li>
+    
+      <li>
+        <a href="/2017/08/09/Git/GithubEmoji/">Github 提交代码 Emoji</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/AOP/">AOP</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2018 yangyuan
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
