@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="plgy_y的Blog" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>java关键字transient,volatile | plgy_y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="¶被transient关键字修饰的变量不会被序列化 ¶被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性 ¶被volatile关键字修饰的变量的，具有以下两点特性：  保证了不同线程对该变量操作的内存可见性，不保证原子性。 禁止指令重排序   在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java关键字transient,volatile">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/Java/java关键字transient-volatile/index.html">
+<meta property="og:site_name" content="plgy_y">
+<meta property="og:description" content="¶被transient关键字修饰的变量不会被序列化 ¶被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性 ¶被volatile关键字修饰的变量的，具有以下两点特性：  保证了不同线程对该变量操作的内存可见性，不保证原子性。 禁止指令重排序   在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工">
+<meta property="og:updated_time" content="2018-10-16T03:25:10.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java关键字transient,volatile">
+<meta name="twitter:description" content="¶被transient关键字修饰的变量不会被序列化 ¶被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性 ¶被volatile关键字修饰的变量的，具有以下两点特性：  保证了不同线程对该变量操作的内存可见性，不保证原子性。 禁止指令重排序   在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="plgy_y" rel="home">plgy_y</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">plgy_y的Blog</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Java/java关键字transient-volatile" class="post-Java/java关键字transient-volatile post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      java关键字transient,volatile
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/15/Java/java关键字transient-volatile/" data-id="cjnbc6l7x0009mwluxsn4vujk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="被transient关键字修饰的变量不会被序列化"><a class="header-anchor" href="#被transient关键字修饰的变量不会被序列化">¶</a>被transient关键字修饰的变量不会被序列化</h3>
+<h3 id="被volatile关键字修饰的变量-每次被线程访问时-都会强制从共享内存中重读改变量的值-但是不具备原子性"><a class="header-anchor" href="#被volatile关键字修饰的变量-每次被线程访问时-都会强制从共享内存中重读改变量的值-但是不具备原子性">¶</a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3>
+<h2 id="被volatile关键字修饰的变量的-具有以下两点特性："><a class="header-anchor" href="#被volatile关键字修饰的变量的-具有以下两点特性：">¶</a>被volatile关键字修饰的变量的，具有以下两点特性：</h2>
+<ol>
+<li>保证了不同线程对该变量操作的内存可见性，不保证原子性。</li>
+<li>禁止指令重排序</li>
+</ol>
+<hr>
+<p>在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工作内存保存了主内存共享的变量，<br>
+其中一个线程要操作这些共享变量，只能通过操作工作内存中的副本来实现，操作完毕之后再同步会主内存中。在其他线程未将共享变量同步<br>
+会自己的工作内存之前，共享变量的改变对其不可见的。也就是说其他线程的工作内存中的变量已经过时了。</p>
+<p>volatile是通过内存屏障和禁止指令重排序来保证内存可见性的，一个线程对volatile变量的修改，能即刻被其他线程所见，<br>
+但是不保证原子性。</p>
+<p>使用volatile提供理想的线程安全，需要满足以下两个条件：</p>
+<ol>
+<li>对变量的写操作不依赖于当前值</li>
+<li>该变量没有包含在具有其他变量的不变式中</li>
+</ol>
+<p>volatile变量不能用来做<strong>线程安全的计数器</strong></p>
+<p>volatile的适用场景</p>
+<h2 id="1-状态标志"><a class="header-anchor" href="#1-状态标志">¶</a>1. 状态标志</h2>
+<p>注意：这种状态标记<strong>通常只有一种状态转换</strong>如果需要状态的来回转换，可以使用原子变量。</p>
+<h2 id="2-一次性安全发布"><a class="header-anchor" href="#2-一次性安全发布">¶</a>2. 一次性安全发布</h2>
+<h2 id="3-独立观察"><a class="header-anchor" href="#3-独立观察">¶</a>3. 独立观察</h2>
+<p>定期“发布”观察结果供程序内部使用</p>
+<h2 id="4-volatile-bean-模式"><a class="header-anchor" href="#4-volatile-bean-模式">¶</a>4. “volatile bean”模式</h2>
+<h2 id="5-开销较低-读-写锁-策略"><a class="header-anchor" href="#5-开销较低-读-写锁-策略">¶</a>5. 开销较低“读-写锁”策略</h2>
+<hr>
+<ul>
+<li>状态位</li>
+<li>一个线程写，多个线程读的场景</li>
+</ul>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/15/Java/java关键字transient-volatile/">
+    <time datetime="2018-10-15T10:30:53.000Z" class="entry-date">
+        2018-10-15
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/10/15/hello-world/" rel="next">Hello World <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/15/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/09/Git/GithubEmoji/">Github 提交代码 Emoji</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 yangyuan
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

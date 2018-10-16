@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="plgy_y的Blog" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>plgy_y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="plgy_y的Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="plgy_y">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="plgy_y">
+<meta property="og:description" content="plgy_y的Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="plgy_y">
+<meta name="twitter:description" content="plgy_y的Blog">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="plgy_y" rel="home">plgy_y</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">plgy_y的Blog</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-Java/java关键字transient-volatile" class="post-Java/java关键字transient-volatile post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/15/Java/java关键字transient-volatile/" data-id="cjnbc6l7x0009mwluxsn4vujk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="被transient关键字修饰的变量不会被序列化"><a class="header-anchor" href="#被transient关键字修饰的变量不会被序列化">¶</a>被transient关键字修饰的变量不会被序列化</h3>
+<h3 id="被volatile关键字修饰的变量-每次被线程访问时-都会强制从共享内存中重读改变量的值-但是不具备原子性"><a class="header-anchor" href="#被volatile关键字修饰的变量-每次被线程访问时-都会强制从共享内存中重读改变量的值-但是不具备原子性">¶</a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3>
+<h2 id="被volatile关键字修饰的变量的-具有以下两点特性："><a class="header-anchor" href="#被volatile关键字修饰的变量的-具有以下两点特性：">¶</a>被volatile关键字修饰的变量的，具有以下两点特性：</h2>
+<ol>
+<li>保证了不同线程对该变量操作的内存可见性，不保证原子性。</li>
+<li>禁止指令重排序</li>
+</ol>
+<hr>
+<p>在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工作内存保存了主内存共享的变量，<br>
+其中一个线程要操作这些共享变量，只能通过操作工作内存中的副本来实现，操作完毕之后再同步会主内存中。在其他线程未将共享变量同步<br>
+会自己的工作内存之前，共享变量的改变对其不可见的。也就是说其他线程的工作内存中的变量已经过时了。</p>
+<p>volatile是通过内存屏障和禁止指令重排序来保证内存可见性的，一个线程对volatile变量的修改，能即刻被其他线程所见，<br>
+但是不保证原子性。</p>
+<p>使用volatile提供理想的线程安全，需要满足以下两个条件：</p>
+<ol>
+<li>对变量的写操作不依赖于当前值</li>
+<li>该变量没有包含在具有其他变量的不变式中</li>
+</ol>
+<p>volatile变量不能用来做<strong>线程安全的计数器</strong></p>
+<p>volatile的适用场景</p>
+<h2 id="1-状态标志"><a class="header-anchor" href="#1-状态标志">¶</a>1. 状态标志</h2>
+<p>注意：这种状态标记<strong>通常只有一种状态转换</strong>如果需要状态的来回转换，可以使用原子变量。</p>
+<h2 id="2-一次性安全发布"><a class="header-anchor" href="#2-一次性安全发布">¶</a>2. 一次性安全发布</h2>
+<h2 id="3-独立观察"><a class="header-anchor" href="#3-独立观察">¶</a>3. 独立观察</h2>
+<p>定期“发布”观察结果供程序内部使用</p>
+<h2 id="4-volatile-bean-模式"><a class="header-anchor" href="#4-volatile-bean-模式">¶</a>4. “volatile bean”模式</h2>
+<h2 id="5-开销较低-读-写锁-策略"><a class="header-anchor" href="#5-开销较低-读-写锁-策略">¶</a>5. 开销较低“读-写锁”策略</h2>
+<hr>
+<ul>
+<li>状态位</li>
+<li>一个线程写，多个线程读的场景</li>
+</ul>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/15/Java/java关键字transient-volatile/">
+    <time datetime="2018-10-15T10:30:53.000Z" class="entry-date">
+        2018-10-15
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-hello-world" class="post-hello-world post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/10/15/hello-world/">Hello World</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/15/hello-world/" data-id="cjnbc6l4w0001mwluw1ie1vnb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="quick-start"><a class="header-anchor" href="#quick-start">¶</a>Quick Start</h2>
+<h3 id="create-a-new-post"><a class="header-anchor" href="#create-a-new-post">¶</a>Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="run-server"><a class="header-anchor" href="#run-server">¶</a>Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="generate-static-files"><a class="header-anchor" href="#generate-static-files">¶</a>Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="header-anchor" href="#deploy-to-remote-sites">¶</a>Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/15/hello-world/">
+    <time datetime="2018-10-15T08:05:35.909Z" class="entry-date">
+        2018-10-15
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-SpringAOP原理" class="post-SpringAOP原理 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/01/SpringAOP原理/" data-id="cjnbc6l4q0000mwlu1ux330sv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="aop-aspect-orientedprogramming-面向切面编程-可以说是oop-object-oriented-programing-面向对象编程-的补充和完善"><a class="header-anchor" href="#aop-aspect-orientedprogramming-面向切面编程-可以说是oop-object-oriented-programing-面向对象编程-的补充和完善">¶</a>AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。</h4>
+<h3 id="aop使用场景"><a class="header-anchor" href="#aop使用场景">¶</a>AOP使用场景</h3>
+<ul>
+<li>权限</li>
+<li>缓存</li>
+<li>内容传递</li>
+<li>错误处理</li>
+<li>懒加载</li>
+<li>调试</li>
+<li>记录跟踪 优化 校准</li>
+<li>持久化</li>
+<li>资源池</li>
+<li>同步</li>
+<li>事务</li>
+</ul>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/01/SpringAOP原理/">
+    <time datetime="2018-10-01T15:06:32.000Z" class="entry-date">
+        2018-10-01
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AOP/">AOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-Git/GithubEmoji" class="post-Git/GithubEmoji post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2017/08/09/Git/GithubEmoji/">Github 提交代码 Emoji</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2017/08/09/Git/GithubEmoji/" data-id="cjnbc6l7v0008mwlu390778ep" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>An emoji guide for your commit messages: <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="external">gitmoji</a></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Emoji</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:art:</code></td>
+<td>🎨</td>
+<td>改进代码的结构/格式</td>
+</tr>
+<tr>
+<td><code>:zap:</code></td>
+<td>⚡️</td>
+<td>提高性能</td>
+</tr>
+<tr>
+<td><code>:fire:</code></td>
+<td>🔥</td>
+<td>删除代码或文件</td>
+</tr>
+<tr>
+<td><code>:bug:</code></td>
+<td>🐛</td>
+<td>修复bug</td>
+</tr>
+<tr>
+<td><code>:ambulance:</code></td>
+<td>🚑</td>
+<td>关键修补程序</td>
+</tr>
+<tr>
+<td><code>:sparkles:</code></td>
+<td>✨</td>
+<td>引入新功能</td>
+</tr>
+<tr>
+<td><code>:memo:</code></td>
+<td>📝</td>
+<td>写文档</td>
+</tr>
+<tr>
+<td><code>:rocket:</code></td>
+<td>🚀</td>
+<td>部署项目</td>
+</tr>
+<tr>
+<td><code>:lipstick:</code></td>
+<td>💄</td>
+<td>更新UI和样式文件</td>
+</tr>
+<tr>
+<td><code>:tada:</code></td>
+<td>🎉</td>
+<td>初始提交</td>
+</tr>
+<tr>
+<td><code>:white_check_mark:</code></td>
+<td>✅</td>
+<td>添加测试</td>
+</tr>
+<tr>
+<td><code>:lock:</code></td>
+<td>🔒</td>
+<td>解决安全问题</td>
+</tr>
+<tr>
+<td><code>:apple:</code></td>
+<td>🍎</td>
+<td>修改 macOS 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:penguin:</code></td>
+<td>🐧</td>
+<td>修改 Linux 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:checkered_flag:</code></td>
+<td>🏁</td>
+<td>修改 Windows 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:robot:</code></td>
+<td>🤖</td>
+<td>修改 Android 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:green_apple:</code></td>
+<td>🍏</td>
+<td>修改 IOS 下的一些问题</td>
+</tr>
+<tr>
+<td><code>:bookmark:</code></td>
+<td>🔖</td>
+<td>发布版本标签</td>
+</tr>
+<tr>
+<td><code>:rotating_light:</code></td>
+<td>🚨</td>
+<td>移除 linter 警告</td>
+</tr>
+<tr>
+<td><code>:construction:</code></td>
+<td>🚧</td>
+<td>工作正在进行中</td>
+</tr>
+<tr>
+<td><code>:green_heart:</code></td>
+<td>💚</td>
+<td>修复CI构建</td>
+</tr>
+<tr>
+<td><code>:arrow_down:</code></td>
+<td>⬇️</td>
+<td>降级依赖</td>
+</tr>
+<tr>
+<td><code>:arrow_up:</code></td>
+<td>⬆️</td>
+<td>更新依赖</td>
+</tr>
+<tr>
+<td><code>:construction_worker:</code></td>
+<td>👷</td>
+<td>添加CI构建系统</td>
+</tr>
+<tr>
+<td><code>:chart_with_upwards_trend:</code></td>
+<td>📈</td>
+<td>添加分析或跟踪代码</td>
+</tr>
+<tr>
+<td><code>:hammer:</code></td>
+<td>🔨</td>
+<td>重构代码</td>
+</tr>
+<tr>
+<td><code>:heavy_minus_sign:</code></td>
+<td>➖</td>
+<td>删除依赖关系</td>
+</tr>
+<tr>
+<td><code>:whale:</code></td>
+<td>🐳</td>
+<td>关于Docker的工作</td>
+</tr>
+<tr>
+<td><code>:heavy_plus_sign:</code></td>
+<td>➕</td>
+<td>添加依赖关系</td>
+</tr>
+<tr>
+<td><code>:wrench:</code></td>
+<td>🔧</td>
+<td>更改配置文件</td>
+</tr>
+<tr>
+<td><code>:globe_with_meridians:</code></td>
+<td>🌐</td>
+<td>国际化和本地化</td>
+</tr>
+<tr>
+<td><code>:pencil2:</code></td>
+<td>✏️</td>
+<td>修正打字错误</td>
+</tr>
+<tr>
+<td><code>:hankey:</code></td>
+<td>💩</td>
+<td>编写不好的代码，需要改进</td>
+</tr>
+<tr>
+<td><code>:rewind:</code></td>
+<td>⏪</td>
+<td>还原更改</td>
+</tr>
+<tr>
+<td><code>:twisted_rightwards_arrows:</code></td>
+<td>🔀</td>
+<td>合并分支</td>
+</tr>
+<tr>
+<td><code>:package:</code></td>
+<td>📦</td>
+<td>更新已编译的文件或包</td>
+</tr>
+<tr>
+<td><code>:alien:</code></td>
+<td>👽</td>
+<td>由于外部API更改而更新代码</td>
+</tr>
+<tr>
+<td><code>:truck:</code></td>
+<td>🚚</td>
+<td>移动或重命名文件</td>
+</tr>
+<tr>
+<td><code>:page_facing_up:</code></td>
+<td>📄</td>
+<td>添加或更新许可证</td>
+</tr>
+<tr>
+<td><code>:boom:</code></td>
+<td>💥</td>
+<td>引入爆炸改变</td>
+</tr>
+<tr>
+<td><code>:bento:</code></td>
+<td>🍱</td>
+<td>添加或更新资源</td>
+</tr>
+<tr>
+<td><code>:ok_hand:</code></td>
+<td>👌</td>
+<td>由于代码审查更改而更新代码</td>
+</tr>
+<tr>
+<td><code>:wheelchair:</code></td>
+<td>♿️</td>
+<td>改善无障碍</td>
+</tr>
+<tr>
+<td><code>:bulb:</code></td>
+<td>💡</td>
+<td>文档化源代码</td>
+</tr>
+<tr>
+<td><code>:beers:</code></td>
+<td>🍻</td>
+<td>沉迷写代码</td>
+</tr>
+<tr>
+<td><code>:speech_balloon:</code></td>
+<td>💬</td>
+<td>更新文本和常量</td>
+</tr>
+<tr>
+<td><code>:card_file_box:</code></td>
+<td>🗃</td>
+<td>执行数据库相关更改</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2017/08/09/Git/GithubEmoji/">
+    <time datetime="2017-08-09T15:55:41.000Z" class="entry-date">
+        2017-08-09
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/15/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/09/Git/GithubEmoji/">Github 提交代码 Emoji</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 yangyuan
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
