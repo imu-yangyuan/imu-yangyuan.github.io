@@ -1,73 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
     <loc>http://yoursite.com/2018/10/15/Java/java%E5%85%B3%E9%94%AE%E5%AD%97transient-volatile/</loc>
     <lastmod>2018-10-16T03:25:10.792Z</lastmod>
-    <data>
-        <display>
-        <title>java关键字transient,volatile</title>
-        <pubTime>2018-10-15T10:30:53.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://yoursite.com/2018/10/01/SpringAOP%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2018-10-15T10:07:05.461Z</lastmod>
-    <data>
-        <display>
-        <title>SpringAOP原理</title>
-        <pubTime>2018-10-01T15:06:32.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Spring</tag>
-         
-        <tag>AOP</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://yoursite.com/2018/10/15/hello-world/</loc>
     <lastmod>2018-10-15T08:05:35.909Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2018-10-15T08:05:35.909Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>http://yoursite.com/2017/08/09/Git/GithubEmoji/</loc>
     <lastmod>2018-10-15T08:05:35.888Z</lastmod>
-    <data>
-        <display>
-        <title>Github 提交代码 Emoji</title>
-        <pubTime>2017-08-09T15:55:41.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
+  </url>
 </urlset>
