@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-17T09:59:56.839Z</updated>
+  <updated>2018-10-17T11:02:38.648Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>幽静的小路</title>
+    <link href="http://yoursite.com/2018/10/17/Journey/%E5%B9%BD%E9%9D%99%E7%9A%84%E5%B0%8F%E8%B7%AF/"/>
+    <id>http://yoursite.com/2018/10/17/Journey/幽静的小路/</id>
+    <published>2018-10-17T10:05:34.000Z</published>
+    <updated>2018-10-17T11:02:38.648Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，</code></pre><p>导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。<br>回想起来，当自己再经历一遍时，发现我还是不能改变环境和别人对我的影响，那时候的我是在感情用事吗？还是自己没有气度呢？<br>唯一能做的是改变自己，改变自己的心态和状态。</p><h2 id="人可以不认识人，但是灵魂认识灵魂"><a href="#人可以不认识人，但是灵魂认识灵魂" class="headerlink" title="人可以不认识人，但是灵魂认识灵魂"></a>人可以不认识人，但是灵魂认识灵魂</h2><h2 id="如果你抓住深渊不放，深渊也会抓住你不放"><a href="#如果你抓住深渊不放，深渊也会抓住你不放" class="headerlink" title="如果你抓住深渊不放，深渊也会抓住你不放"></a>如果你抓住深渊不放，深渊也会抓住你不放</h2><h2 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h2><p>   凡是有的，还要加给他，叫他多余。没有的，连他所有的，也要夺过来。任何时候，不要太悲伤，其实自己拥有很多，so far so good。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="悟" scheme="http://yoursite.com/tags/%E6%82%9F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【Java并发】Java多线程Future的使用</title>
-    <link href="http://yoursite.com/2018/10/17/%E3%80%90Java%E5%B9%B6%E5%8F%91%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2018/10/17/【Java并发】Java多线程Future的使用/</id>
+    <link href="http://yoursite.com/2018/10/17/Java%E5%B9%B6%E5%8F%91/%E3%80%90Java%E5%B9%B6%E5%8F%91%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/</id>
     <published>2018-10-17T09:07:10.000Z</published>
     <updated>2018-10-17T09:59:56.839Z</updated>
     
