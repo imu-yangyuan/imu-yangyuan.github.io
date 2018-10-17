@@ -64,6 +64,50 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-17T09:07:10.000Z"><a href="/2018/10/17/【Java并发】Java多线程Future的使用/">2018-10-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/17/【Java并发】Java多线程Future的使用/">【Java并发】Java多线程Future的使用</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Future模式简述"><a href="#Future模式简述" class="headerlink" title="Future模式简述"></a>Future模式简述</h2><ul>
+<li>在传统单线程环境下，调用函数是同步的，必须等待程序返回结果后，才可进行其他处理。</li>
+<li>Future模式下，调用方式改为异步。</li>
+<li>Future模式的核心在于：充分利用主函数中的等待时间，利用等待时间处理其他任务，充分利用计算资源<br>示例代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManipulationDataTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ManipulationDataTask</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String data1 = data.toUpperCase();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理中..."</span>);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理完成,处理好的数据为"</span> + data1);</span><br><span class="line">        <span class="keyword">return</span> data1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Future;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException </span>&#123;</span><br><span class="line"></span><br><span class="line">        FutureTask&lt;String&gt; future1 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"abc"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future2 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"def"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future3 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"ghi"</span>));</span><br><span class="line">        ManipulationDataTask manipulationDataTask = <span class="keyword">new</span> ManipulationDataTask(<span class="string">"jkl"</span>);</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">        executor.submit(future1);</span><br><span class="line">        executor.submit(future2);</span><br><span class="line">        executor.submit(future3);</span><br><span class="line">        Future&lt;String&gt; future4 =executor.submit(manipulationDataTask);</span><br><span class="line">        System.out.println(<span class="string">"请求完毕！"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程先去做点别的事"</span>);</span><br><span class="line">            Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">            System.out.println(<span class="string">"主线程的事情做完了"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"主线程开始获取子任务处理完的结果"</span>);</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future1.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future2.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future3.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future4.get());</span><br><span class="line">        executor.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="程序运行结果："><a href="#程序运行结果：" class="headerlink" title="程序运行结果："></a>程序运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">请求完毕！</span><br><span class="line">主线程先去做点别的事</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理中...</span><br><span class="line">pool-1-thread-3业务处理线程处理中...</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为ABC</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理完成,处理好的数据为DEF</span><br><span class="line">pool-1-thread-3业务处理线程处理完成,处理好的数据为GHI</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为JKL</span><br><span class="line">主线程的事情做完了</span><br><span class="line">主线程开始获取子任务处理完的结果</span><br><span class="line">数据处理完成：ABC</span><br><span class="line">数据处理完成：DEF</span><br><span class="line">数据处理完成：GHI</span><br><span class="line">数据处理完成：JKL</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-15T10:30:53.000Z"><a href="/2018/10/15/Java/java关键字transient-volatile/">2018-10-15</a></time>
       
       
@@ -168,11 +212,11 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-01T15:06:32.000Z"><a href="/2018/10/01/SpringAOP原理/">2018-10-01</a></time>
+        <time datetime="2018-10-01T15:06:32.000Z"><a href="/2018/10/01/Java/SpringAOP原理/">2018-10-01</a></time>
       
       
   
-    <h1 class="title"><a href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a></h1>
+    <h1 class="title"><a href="/2018/10/01/Java/SpringAOP原理/">SpringAOP原理</a></h1>
   
 
     </header>
@@ -527,6 +571,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2018/10/17/【Java并发】Java多线程Future的使用/">【Java并发】Java多线程Future的使用</a>
+      </li>
+    
+      <li>
         <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
       </li>
     
@@ -535,7 +583,7 @@
       </li>
     
       <li>
-        <a href="/2018/10/01/SpringAOP原理/">SpringAOP原理</a>
+        <a href="/2018/10/01/Java/SpringAOP原理/">SpringAOP原理</a>
       </li>
     
       <li>

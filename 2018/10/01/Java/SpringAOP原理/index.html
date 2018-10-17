@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>java关键字transient,volatile | plgy_y</title>
+  <title>SpringAOP原理 | plgy_y</title>
   <meta name="author" content="yangyuan" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="java关键字transient,volatile" />
+  <meta property="og:title" content="SpringAOP原理" />
   <meta property="og:site_name" content="plgy_y" />
 
   
@@ -63,36 +63,28 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-15T10:30:53.000Z"><a href="/2018/10/15/Java/java关键字transient-volatile/">2018-10-15</a></time>
+        <time datetime="2018-10-01T15:06:32.000Z"><a href="/2018/10/01/Java/SpringAOP原理/">2018-10-01</a></time>
       
       
   
-    <h1 class="title">java关键字transient,volatile</h1>
+    <h1 class="title">SpringAOP原理</h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="被transient关键字修饰的变量不会被序列化"><a href="#被transient关键字修饰的变量不会被序列化" class="headerlink" title="被transient关键字修饰的变量不会被序列化"></a>被transient关键字修饰的变量不会被序列化</h3><h3 id="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"><a href="#被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性" class="headerlink" title="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"></a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3><h2 id="被volatile关键字修饰的变量的，具有以下两点特性："><a href="#被volatile关键字修饰的变量的，具有以下两点特性：" class="headerlink" title="被volatile关键字修饰的变量的，具有以下两点特性："></a>被volatile关键字修饰的变量的，具有以下两点特性：</h2><ol>
-<li>保证了不同线程对该变量操作的内存可见性，不保证原子性。</li>
-<li>禁止指令重排序</li>
-</ol>
-<hr>
-<p>在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工作内存保存了主内存共享的变量，<br>其中一个线程要操作这些共享变量，只能通过操作工作内存中的副本来实现，操作完毕之后再同步会主内存中。在其他线程未将共享变量同步<br>会自己的工作内存之前，共享变量的改变对其不可见的。也就是说其他线程的工作内存中的变量已经过时了。</p>
-<p>volatile是通过内存屏障和禁止指令重排序来保证内存可见性的，一个线程对volatile变量的修改，能即刻被其他线程所见，<br>但是不保证原子性。</p>
-<p>使用volatile提供理想的线程安全，需要满足以下两个条件：</p>
-<ol>
-<li>对变量的写操作不依赖于当前值</li>
-<li>该变量没有包含在具有其他变量的不变式中</li>
-</ol>
-<p>volatile变量不能用来做<strong>线程安全的计数器</strong></p>
-<p>volatile的适用场景</p>
-<h2 id="1-状态标志"><a href="#1-状态标志" class="headerlink" title="1. 状态标志"></a>1. 状态标志</h2><p>注意：这种状态标记<strong>通常只有一种状态转换</strong>如果需要状态的来回转换，可以使用原子变量。</p>
-<h2 id="2-一次性安全发布"><a href="#2-一次性安全发布" class="headerlink" title="2. 一次性安全发布"></a>2. 一次性安全发布</h2><h2 id="3-独立观察"><a href="#3-独立观察" class="headerlink" title="3. 独立观察"></a>3. 独立观察</h2><p>定期“发布”观察结果供程序内部使用</p>
-<h2 id="4-“volatile-bean”模式"><a href="#4-“volatile-bean”模式" class="headerlink" title="4. “volatile bean”模式"></a>4. “volatile bean”模式</h2><h2 id="5-开销较低“读-写锁”策略"><a href="#5-开销较低“读-写锁”策略" class="headerlink" title="5. 开销较低“读-写锁”策略"></a>5. 开销较低“读-写锁”策略</h2><hr>
-<ul>
-<li>状态位</li>
-<li>一个线程写，多个线程读的场景</li>
+        <h4 id="AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented-Programing，面向对象编程）的补充和完善。"><a href="#AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented-Programing，面向对象编程）的补充和完善。" class="headerlink" title="AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。"></a>AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。</h4><h3 id="AOP使用场景"><a href="#AOP使用场景" class="headerlink" title="AOP使用场景"></a>AOP使用场景</h3><ul>
+<li>权限</li>
+<li>缓存</li>
+<li>内容传递</li>
+<li>错误处理</li>
+<li>懒加载</li>
+<li>调试</li>
+<li>记录跟踪 优化 校准</li>
+<li>持久化</li>
+<li>资源池</li>
+<li>同步</li>
+<li>事务</li>
 </ul>
 
       
@@ -105,6 +97,11 @@
         </div>
         
         
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Spring/">Spring</a>, <a href="/tags/AOP/">AOP</a>
+  </div>
+
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
     </footer>

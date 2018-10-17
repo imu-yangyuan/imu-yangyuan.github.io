@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/10/17/%E3%80%90Java%E5%B9%B6%E5%8F%91%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2018-10-17T09:52:54.026Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/10/15/Java/java%E5%85%B3%E9%94%AE%E5%AD%97transient-volatile/</loc>
     
     <lastmod>2018-10-16T03:25:10.792Z</lastmod>
@@ -9,7 +16,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/10/01/SpringAOP%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://yoursite.com/2018/10/01/Java/SpringAOP%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2018-10-15T10:07:05.461Z</lastmod>
     
