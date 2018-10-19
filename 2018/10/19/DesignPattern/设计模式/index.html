@@ -73,7 +73,8 @@
     </header>
     <div class="entry">
       
-        <h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><h4 id="设计模式分为三大类："><a href="#设计模式分为三大类：" class="headerlink" title="设计模式分为三大类："></a>设计模式分为三大类：</h4><ul>
+        <p><img src="/2018/10/19/DesignPattern/设计模式/designpatternbg.jpg" alt=""></p>
+<h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><h4 id="设计模式分为三大类："><a href="#设计模式分为三大类：" class="headerlink" title="设计模式分为三大类："></a>设计模式分为三大类：</h4><ul>
 <li>创建型模式，共五种：<ul>
 <li>工厂方法模式，抽象工厂模式，单例模式，建造者模式，原型模式</li>
 </ul>
@@ -87,7 +88,27 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2018/10/19/DesignPattern/设计模式/designpatternbg.jpg" alt=""></p>
+<h2 id="设计模式的六大原则"><a href="#设计模式的六大原则" class="headerlink" title="设计模式的六大原则"></a>设计模式的六大原则</h2><h4 id="1、单一职责原则"><a href="#1、单一职责原则" class="headerlink" title="1、单一职责原则"></a>1、单一职责原则</h4><ul>
+<li>不要存在多于一个导致类变更的原因，也就是说每个类应该实现单一的职责，如若不然，就应该把类拆分。</li>
+</ul>
+<h4 id="2、里氏替换原则（Liskov-Substitution-Principle）"><a href="#2、里氏替换原则（Liskov-Substitution-Principle）" class="headerlink" title="2、里氏替换原则（Liskov Substitution Principle）"></a>2、里氏替换原则（Liskov Substitution Principle）</h4><pre><code>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科
+
+历史替换原则中，子类对父类的方法尽量不要重写和重载。因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。
+</code></pre><h4 id="3、依赖倒转原则（Dependence-Inversion-Principle）"><a href="#3、依赖倒转原则（Dependence-Inversion-Principle）" class="headerlink" title="3、依赖倒转原则（Dependence Inversion Principle）"></a>3、依赖倒转原则（Dependence Inversion Principle）</h4><ul>
+<li>这个是开闭原则的基础，具体内容：面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。</li>
+</ul>
+<h4 id="4、接口隔离原则（Interface-Segregation-Principle）"><a href="#4、接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="4、接口隔离原则（Interface Segregation Principle）"></a>4、接口隔离原则（Interface Segregation Principle）</h4><ul>
+<li>每个接口中不存在子类用不到却必须实现的方法，如果不然，就要将接口拆分。使用多个隔离的接口，比使用单个接口（多个接口方法集合到一个的接口）要好。</li>
+</ul>
+<h4 id="5、迪米特法则（最少知道原则）（Demeter-Principle）"><a href="#5、迪米特法则（最少知道原则）（Demeter-Principle）" class="headerlink" title="5、迪米特法则（最少知道原则）（Demeter Principle）"></a>5、迪米特法则（最少知道原则）（Demeter Principle）</h4><ul>
+<li><p>一个类对自己依赖的类知道的越少越好。也就是说无论被依赖的类多么复杂，都应该将逻辑封装在方法的内部，通过public方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。</p>
+</li>
+<li><p>最少知道原则的另一个表达方式是：只与直接的朋友通信。类之间只要有耦合关系，就叫朋友关系。耦合分为依赖、关联、聚合、组合等。我们称出现为成员变量、方法参数、方法返回值中的类为直接朋友。局部变量、临时变量则不是直接的朋友。我们要求陌生的类不要作为局部变量出现在类中。</p>
+</li>
+</ul>
+<h4 id="6、合成复用原则（Composite-Reuse-Principle）"><a href="#6、合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="6、合成复用原则（Composite Reuse Principle）"></a>6、合成复用原则（Composite Reuse Principle）</h4><ul>
+<li>原则是尽量首先使用合成/聚合的方式，而不是使用继承。</li>
+</ul>
 
       
     </div>
@@ -129,6 +150,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2018/10/19/Git/Git常用命令/">Git常用命令</a>
+      </li>
+    
+      <li>
         <a href="/2018/10/19/DesignPattern/设计模式/">设计模式</a>
       </li>
     
@@ -142,10 +167,6 @@
     
       <li>
         <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/15/hello-world/">Hello World</a>
       </li>
     
   </ul>
