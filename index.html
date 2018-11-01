@@ -175,8 +175,7 @@
 </ol>
 <p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-printf"><a href="#3-printf" class="headerlink" title="3. printf"></a>3. printf</h2><p>格式化并打印数据<br>printf ‘%10s %10s %10s %10s %10s \n’ <code>cat test.txt</code>    %10s代表这一列的宽度固定为10个字符<br>%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）</p>
-<h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号</p>
-<p>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p>
+<h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号<br>FS=”,”：以”,”分割行<br>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p>
 <ol>
 <li>加入条件判断后，awk的格式为： awk ‘条件1 {命令1};条件2{命令2}’</li>
 <li><p>条件判断有以下逻辑运算：</p>
