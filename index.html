@@ -64,6 +64,329 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-10-31T02:21:53.000Z"><a href="/2018/10/31/Linux/Linux常用命令/">2018-10-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/31/Linux/Linux常用命令/">Linux常用命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="查看使用内存最多的10个进程"><a href="#查看使用内存最多的10个进程" class="headerlink" title="查看使用内存最多的10个进程"></a>查看使用内存最多的10个进程</h2><ul>
+<li>ps -aux | sort -k4nr | head -n 10</li>
+<li>top （然后按下M，注意大写）</li>
+</ul>
+<h2 id="查看使用CPU最多的10个进程"><a href="#查看使用CPU最多的10个进程" class="headerlink" title="查看使用CPU最多的10个进程"></a>查看使用CPU最多的10个进程</h2><ul>
+<li>ps -aux | sort -k3nr | head -n 10</li>
+<li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （然后按下P，注意大写)</h2><p>ps命令参数解释<br>-a ： 显示现行终端机下的所有进程，包括其他用户的进程；<br>-u ： 以用户为主的进程状态 ；<br>x ： 通常与 a 这个参数一起使用，可列出较完整信息。</p>
+<h2 id="查看网卡流量"><a href="#查看网卡流量" class="headerlink" title="查看网卡流量"></a>查看网卡流量</h2><ul>
+<li>watch more /proc/net/dev  可以查看每2秒的字节和数据包的变化</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-30T07:10:41.000Z"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">2018-10-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">Linux文本处理常用命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Linux文本处理常用命令：<strong>grep、sed、printf、awk</strong></p>
+<h2 id="1-grep"><a href="#1-grep" class="headerlink" title="1. grep"></a>1. grep</h2><p>按行查找字符，输出包含字符的行<br>用法</p>
+<ol>
+<li>grep ‘key’ test.txt</li>
+<li>cat test.txt|grep ‘key’</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义及示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-n</td>
+<td>输出结果加行号</td>
+</tr>
+<tr>
+<td>–color=auto</td>
+<td>匹配的关键字高亮显示</td>
+</tr>
+<tr>
+<td>-A2</td>
+<td>输出匹配行的后两行</td>
+</tr>
+<tr>
+<td>-B2</td>
+<td>输出匹配行的前两行</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>反向查找，即输出不包含关键字的行</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>关键字匹配时忽略关键字大小写</td>
+</tr>
+</tbody>
+</table>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;o\&#123;3\&#125;&apos;　　//查找两个o，这里需要注意，&#123;&#125;在shell里有特殊意义，因此需要转义。</span><br></pre></td></tr></table></figure></p>
+<h4 id="egrep"><a href="#egrep" class="headerlink" title="egrep:"></a>egrep:</h4><p>正则表达式分为基本正则表达式和扩展正则表达式，grep只支持基本正则表达式，如果要使用扩展正则表达式，需要使用egrep命令<br>列如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep &apos;123|1234&apos; //查找123或1234</span><br><span class="line">egrep &apos;1(23|234)5&apos; //查找1235或12345</span><br><span class="line">egrep &apos;1(23)+45&apos; //查找1X45，其中X是一个或一个以上的‘23’字符串</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-sed"><a href="#2-sed" class="headerlink" title="2.sed"></a>2.sed</h2><p>sed可以用来做<strong>行删除、行新增、行选取、行替换、字符串替换</strong><br>使用方式：cat test.txt | sed ‘2d’  或者 sed ‘2d’test.txt</p>
+<ol>
+<li>行删除<br>sed ‘2,5d’ //删除第2-5行<br>sed ‘3,$d’ //删除第3到最后一行<br>sed ‘/^$/d’//删除空行</li>
+<li>行新增<br>sed ‘2a abc’ //在第二行下面追加一行“abc”，a代表append<br>sed ‘2i abc’ //在第二行上面插入一行 “abc”，i代表insert<br>sed ‘2a a\<br>b\<br>c’　　//在第二行下面追加三行 “a”、”b”、”c”，只需要每行结尾加”\”即可。</li>
+<li>行选取<br>sed -n ‘7,9p’　　//选取第5到7行输出，必须加-n参数，不然效果就是所有行都被输出，而7到9行输出两次。</li>
+<li>行替换<br>sed ‘2,5c abc’　　//将第2到5行替换为一行字符串”abc”</li>
+<li>字符串替换<br>sed ‘s/要被替换的字符串/新的字符串/g’ /可以是#号之类的，在被替换的字符串包含/时，可以考虑别的分隔符。要被替换的字符串可以是<br>正则表达式</li>
+</ol>
+<p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-printf"><a href="#3-printf" class="headerlink" title="3. printf"></a>3. printf</h2><p>格式化并打印数据<br>printf ‘%10s %10s %10s %10s %10s \n’ <code>cat test.txt</code>    %10s代表这一列的宽度固定为10个字符<br>%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）</p>
+<h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号</p>
+<p>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p>
+<ol>
+<li>加入条件判断后，awk的格式为： awk ‘条件1 {命令1};条件2{命令2}’</li>
+<li><p>条件判断有以下逻辑运算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&lt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;=</span><br><span class="line">==　　//注意判断相等要用两个等号</span><br><span class="line">!=</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以直接运算行内列的值($1、$2、$3)。</p>
+</li>
+</ol>
+<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><p>1）cut切割字符</p>
+<ul>
+<li>以“，”切割文件并取出第1列<br>cat  test.txt |cut -d ‘,’ -f 1| sort | uniq -c | sort -rn -k1 &gt; new_test.txt</li>
+</ul>
+<p>2）sort排序的时候注意默认是按照字典的方式排序，如果按照数字时则必须加上-n</p>
+<ul>
+<li>uniq去除重复，只能去除相邻的重复，所以要先排序，后去除重复</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep/egrep</td>
+<td>关键字查找</td>
+</tr>
+<tr>
+<td>sed</td>
+<td>1.行的删除、添加、替换、选取 <br> 2.关键字替换</td>
+</tr>
+<tr>
+<td>printf</td>
+<td>文本格式化输出</td>
+</tr>
+<tr>
+<td>awk</td>
+<td>1. 将每行按分隔符拆分成列并选取某些列<br>2. 通过逻辑判断对不同行进行不同的处理<br>3.对一行中的几列数值进行计算</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>切割字符</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>排序</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-30T06:58:48.000Z"><a href="/2018/10/30/Linux/Linux命令/">2018-10-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/30/Linux/Linux命令/">Linux命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><ul>
+<li>-n ： 依照数值的大小排序。(不加-n参数，默认按照字符ASSII码的排序 会出现如（1,11,2,3..）这样的排序)</li>
+<li>-k 指定按某一列排序 从1开始。</li>
+<li>-r: 以相反的顺序来排序。(默认是从小到大，加上-r即从大到小)</li>
+</ul>
+<hr>
+<ul>
+<li>-t 设定分隔符,使用指定的分隔符代替非空格到空格的转换</li>
+<li>-b   忽略每行前面开始出的空格字符。</li>
+<li>-c   检查文件是否已经按照顺序排序。</li>
+<li>-d   排序时，处理英文字母、数字及空格字符外，忽略其他的字符。</li>
+<li>-f   排序时，将小写字母视为大写字母。</li>
+<li>-i   排序时，除了040至176之间的ASCII字符外，忽略其他的字符。</li>
+<li>-m   将几个排序好的文件进行合并。</li>
+<li>-M   将前面3个字母依照月份的缩写进行排序。</li>
+<li>-o&lt;输出文件&gt;   将排序后的结果存入指定的文件。</li>
+<li>+&lt;起始栏位&gt;-&lt;结束栏位&gt;   以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。<br>sort -n -k 2 -t’-‘ test.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//原来的内容</span><br><span class="line">[root@h2 ~]# cat test.txt</span><br><span class="line">2018-12-01</span><br><span class="line">2013-01-08</span><br><span class="line">2015-10-24</span><br><span class="line">2016-04-25</span><br><span class="line"></span><br><span class="line">[root@h2 ~]# sort -nk2 -t&apos;-&apos; test.txt</span><br><span class="line">2013-01-08</span><br><span class="line">2016-04-25</span><br><span class="line">2015-10-24</span><br><span class="line">2018-12-01</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>head用于显示文件的开头的内容。在默认情况下，head命令显示文件的头10行内容。</p>
+<ul>
+<li>-n&lt;数字&gt; –lines=[-]K     ：指定显示头部内容的行数；如果附加”-“参数，则除了每个文件的最后K 行外显示<pre><code>剩余全部内容
+</code></pre></li>
+<li>-v：总是显示文件名的头信息；</li>
+<li>-q：不显示文件名的头信息。</li>
+<li>-c,  –bytes=[-]K    显示每个文件的前K 字节内容</li>
+</ul>
+<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>只过滤相邻的重复行。</p>
+<ul>
+<li>-c, –count        在每行前加上表示相应行目出现次数的前缀编号</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-10-29T06:16:57.000Z"><a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">2018-10-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">Git创建本地分支并关联远程分支</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h2><ul>
+<li>git branch 分支名</li>
+</ul>
+<h2 id="切换到本地分支"><a href="#切换到本地分支" class="headerlink" title="切换到本地分支"></a>切换到本地分支</h2><ul>
+<li>git checkout 分支名</li>
+</ul>
+<h2 id="创建本地分支并切换到该分支"><a href="#创建本地分支并切换到该分支" class="headerlink" title="创建本地分支并切换到该分支"></a>创建本地分支并切换到该分支</h2><ul>
+<li>git checkout -b 分支名</li>
+</ul>
+<h2 id="提交本地分支到远程仓库"><a href="#提交本地分支到远程仓库" class="headerlink" title="提交本地分支到远程仓库"></a>提交本地分支到远程仓库</h2><ul>
+<li>git push origin 本地分支名</li>
+</ul>
+<h2 id="将新建的本地分支与远程分支关联"><a href="#将新建的本地分支与远程分支关联" class="headerlink" title="将新建的本地分支与远程分支关联"></a>将新建的本地分支与远程分支关联</h2><p>-git branch –set-upstream-to=origin/远程分支名  本地分支名<br> 使用git branch –set-upstream 本地分支名 origin/远程分支名 命令报如下错误<br>fatal: the ‘–set-upstream’ option is no longer supported. Please use ‘–track’ or ‘–set-upstream-to’ instead.</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/git/">git</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-19T09:28:38.000Z"><a href="/2018/10/19/Git/Git常用命令/">2018-10-19</a></time>
       
       
@@ -133,6 +456,11 @@
         </div>
         
         
+  
+  <div class="tags">
+    <a href="/tags/git/">git</a>
+  </div>
+
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
     </footer>
@@ -419,353 +747,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-01T15:06:32.000Z"><a href="/2018/10/01/Java/SpringAOP原理/">2018-10-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/01/Java/SpringAOP原理/">SpringAOP原理</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h4 id="AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented-Programing，面向对象编程）的补充和完善。"><a href="#AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented-Programing，面向对象编程）的补充和完善。" class="headerlink" title="AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。"></a>AOP（Aspect-OrientedProgramming，面向切面编程），可以说是OOP（Object-Oriented Programing，面向对象编程）的补充和完善。</h4><h3 id="AOP使用场景"><a href="#AOP使用场景" class="headerlink" title="AOP使用场景"></a>AOP使用场景</h3><ul>
-<li>权限</li>
-<li>缓存</li>
-<li>内容传递</li>
-<li>错误处理</li>
-<li>懒加载</li>
-<li>调试</li>
-<li>记录跟踪 优化 校准</li>
-<li>持久化</li>
-<li>资源池</li>
-<li>同步</li>
-<li>事务</li>
-</ul>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/Java/">Java</a>, <a href="/tags/Spring/">Spring</a>, <a href="/tags/AOP/">AOP</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-08-09T15:55:41.000Z"><a href="/2017/08/09/Git/GithubEmoji/">2017-08-09</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/08/09/Git/GithubEmoji/">Github 提交代码 Emoji</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>An emoji guide for your commit messages: <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="noopener">gitmoji</a></p>
-<table>
-<thead>
-<tr>
-<th>Code</th>
-<th>Emoji</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:art:</code></td>
-<td>:art:</td>
-<td>改进代码的结构/格式</td>
-</tr>
-<tr>
-<td><code>:zap:</code></td>
-<td>:zap:</td>
-<td>提高性能</td>
-</tr>
-<tr>
-<td><code>:fire:</code></td>
-<td>:fire:</td>
-<td>删除代码或文件</td>
-</tr>
-<tr>
-<td><code>:bug:</code></td>
-<td>:bug:</td>
-<td>修复bug</td>
-</tr>
-<tr>
-<td><code>:ambulance:</code></td>
-<td>:ambulance:</td>
-<td>关键修补程序</td>
-</tr>
-<tr>
-<td><code>:sparkles:</code></td>
-<td>:sparkles:</td>
-<td>引入新功能</td>
-</tr>
-<tr>
-<td><code>:memo:</code></td>
-<td>:memo:</td>
-<td>写文档</td>
-</tr>
-<tr>
-<td><code>:rocket:</code></td>
-<td>:rocket:</td>
-<td>部署项目</td>
-</tr>
-<tr>
-<td><code>:lipstick:</code></td>
-<td>:lipstick:</td>
-<td>更新UI和样式文件</td>
-</tr>
-<tr>
-<td><code>:tada:</code></td>
-<td>:tada:</td>
-<td>初始提交</td>
-</tr>
-<tr>
-<td><code>:white_check_mark:</code></td>
-<td>:white_check_mark:</td>
-<td>添加测试</td>
-</tr>
-<tr>
-<td><code>:lock:</code></td>
-<td>:lock:</td>
-<td>解决安全问题</td>
-</tr>
-<tr>
-<td><code>:apple:</code></td>
-<td>:apple:</td>
-<td>修改 macOS 下的一些问题</td>
-</tr>
-<tr>
-<td><code>:penguin:</code></td>
-<td>:penguin:</td>
-<td>修改 Linux 下的一些问题</td>
-</tr>
-<tr>
-<td><code>:checkered_flag:</code></td>
-<td>:checkered_flag:</td>
-<td>修改 Windows 下的一些问题</td>
-</tr>
-<tr>
-<td><code>:robot:</code></td>
-<td>:robot:</td>
-<td>修改 Android 下的一些问题</td>
-</tr>
-<tr>
-<td><code>:green_apple:</code></td>
-<td>:green_apple:</td>
-<td>修改 IOS 下的一些问题</td>
-</tr>
-<tr>
-<td><code>:bookmark:</code></td>
-<td>:bookmark:</td>
-<td>发布版本标签</td>
-</tr>
-<tr>
-<td><code>:rotating_light:</code></td>
-<td>:rotating_light:</td>
-<td>移除 linter 警告</td>
-</tr>
-<tr>
-<td><code>:construction:</code></td>
-<td>:construction:</td>
-<td>工作正在进行中</td>
-</tr>
-<tr>
-<td><code>:green_heart:</code></td>
-<td>:green_heart:</td>
-<td>修复CI构建</td>
-</tr>
-<tr>
-<td><code>:arrow_down:</code></td>
-<td>:arrow_down:</td>
-<td>降级依赖</td>
-</tr>
-<tr>
-<td><code>:arrow_up:</code></td>
-<td>:arrow_up:</td>
-<td>更新依赖</td>
-</tr>
-<tr>
-<td><code>:construction_worker:</code></td>
-<td>:construction_worker:</td>
-<td>添加CI构建系统</td>
-</tr>
-<tr>
-<td><code>:chart_with_upwards_trend:</code></td>
-<td>:chart_with_upwards_trend:</td>
-<td>添加分析或跟踪代码</td>
-</tr>
-<tr>
-<td><code>:hammer:</code></td>
-<td>:hammer:</td>
-<td>重构代码</td>
-</tr>
-<tr>
-<td><code>:heavy_minus_sign:</code></td>
-<td>:heavy_minus_sign:</td>
-<td>删除依赖关系</td>
-</tr>
-<tr>
-<td><code>:whale:</code></td>
-<td>:whale:</td>
-<td>关于Docker的工作</td>
-</tr>
-<tr>
-<td><code>:heavy_plus_sign:</code></td>
-<td>:heavy_plus_sign:</td>
-<td>添加依赖关系</td>
-</tr>
-<tr>
-<td><code>:wrench:</code></td>
-<td>:wrench:</td>
-<td>更改配置文件</td>
-</tr>
-<tr>
-<td><code>:globe_with_meridians:</code></td>
-<td>:globe_with_meridians:</td>
-<td>国际化和本地化</td>
-</tr>
-<tr>
-<td><code>:pencil2:</code></td>
-<td>:pencil2:</td>
-<td>修正打字错误</td>
-</tr>
-<tr>
-<td><code>:hankey:</code></td>
-<td>:hankey:</td>
-<td>编写不好的代码，需要改进</td>
-</tr>
-<tr>
-<td><code>:rewind:</code></td>
-<td>:rewind:</td>
-<td>还原更改</td>
-</tr>
-<tr>
-<td><code>:twisted_rightwards_arrows:</code></td>
-<td>:twisted_rightwards_arrows:</td>
-<td>合并分支</td>
-</tr>
-<tr>
-<td><code>:package:</code></td>
-<td>:package:</td>
-<td>更新已编译的文件或包</td>
-</tr>
-<tr>
-<td><code>:alien:</code></td>
-<td>:alien:</td>
-<td>由于外部API更改而更新代码</td>
-</tr>
-<tr>
-<td><code>:truck:</code></td>
-<td>:truck:</td>
-<td>移动或重命名文件</td>
-</tr>
-<tr>
-<td><code>:page_facing_up:</code></td>
-<td>:page_facing_up:</td>
-<td>添加或更新许可证</td>
-</tr>
-<tr>
-<td><code>:boom:</code></td>
-<td>:boom:</td>
-<td>引入爆炸改变</td>
-</tr>
-<tr>
-<td><code>:bento:</code></td>
-<td>:bento:</td>
-<td>添加或更新资源</td>
-</tr>
-<tr>
-<td><code>:ok_hand:</code></td>
-<td>:ok_hand:</td>
-<td>由于代码审查更改而更新代码</td>
-</tr>
-<tr>
-<td><code>:wheelchair:</code></td>
-<td>:wheelchair:</td>
-<td>改善无障碍</td>
-</tr>
-<tr>
-<td><code>:bulb:</code></td>
-<td>:bulb:</td>
-<td>文档化源代码</td>
-</tr>
-<tr>
-<td><code>:beers:</code></td>
-<td>:beers:</td>
-<td>沉迷写代码</td>
-</tr>
-<tr>
-<td><code>:speech_balloon:</code></td>
-<td>:speech_balloon:</td>
-<td>更新文本和常量</td>
-</tr>
-<tr>
-<td><code>:card_file_box:</code></td>
-<td>:card_file_box:</td>
-<td>执行数据库相关更改</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/git/">git</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
 </nav>
 </div></div>
     <aside id="sidebar" class="alignright">
@@ -784,23 +772,23 @@
   <ul class="entry">
     
       <li>
+        <a href="/2018/10/31/Linux/Linux常用命令/">Linux常用命令</a>
+      </li>
+    
+      <li>
+        <a href="/2018/10/30/Linux/Linux文本处理常用命令/">Linux文本处理常用命令</a>
+      </li>
+    
+      <li>
+        <a href="/2018/10/30/Linux/Linux命令/">Linux命令</a>
+      </li>
+    
+      <li>
+        <a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">Git创建本地分支并关联远程分支</a>
+      </li>
+    
+      <li>
         <a href="/2018/10/19/Git/Git常用命令/">Git常用命令</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/19/DesignPattern/设计模式/">设计模式</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/17/Journey/幽静的小路/">幽静的小路</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/">【Java并发】Java多线程Future的使用</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a>
       </li>
     
   </ul>
@@ -818,9 +806,11 @@
   
     <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
   
-    <li><a href="/tags/git/">git</a><small>1</small></li>
+    <li><a href="/tags/git/">git</a><small>3</small></li>
   
     <li><a href="/tags/java并发/">java并发</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
   
     <li><a href="/tags/悟/">悟</a><small>1</small></li>
   
@@ -834,7 +824,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
