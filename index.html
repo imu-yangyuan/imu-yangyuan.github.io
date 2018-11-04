@@ -76,7 +76,7 @@
       
         <ul>
 <li>kafka是一个分布式消息队列。具有高性能、持久化、多副本备份、横向拓展能力。</li>
-<li><p>kafka对外使用topic的概率，生产者往topic里写消息，消费者从topic中读消息。为了做到水平扩展，<br>一个topic</p>
+<li><p>kafka对外使用topic的概念，生产者往topic里写消息，消费者从topic中读消息。一个topic实际是由多个partition组成的，遇到瓶颈时，<br>可以通过增加partition的数量来进行横向扩容。单个parition内是保证消息有序。</p>
 </li>
 <li><p>**Kafka ActiveMQ RabbitMQ对比</p>
 </li>
