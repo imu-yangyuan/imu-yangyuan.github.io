@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>Git常用命令 | plgy_y</title>
+  <title>kafka | plgy_y</title>
   <meta name="author" content="yangyuan" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="Git常用命令" />
+  <meta property="og:title" content="kafka" />
   <meta property="og:site_name" content="plgy_y" />
 
   
@@ -63,62 +63,48 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-19T09:28:38.000Z"><a href="/2018/10/19/Git/Git常用命令/">2018-10-19</a></time>
+        <time datetime="2018-11-02T08:41:59.000Z"><a href="/2018/11/02/Kafka/kafka/">2018-11-02</a></time>
       
       
   
-    <h1 class="title">Git常用命令</h1>
+    <h1 class="title">kafka</h1>
   
 
     </header>
     <div class="entry">
       
         <ul>
-<li>git init<ul>
-<li>在本地当前目录初始化一个git仓库</li>
+<li>kafka是一个分布式消息队列。具有高性能、持久化、多副本备份、横向拓展能力。</li>
+<li><p>kafka对外使用topic的概率，生产者往topic里写消息，消费者从topic中读消息。为了做到水平扩展，<br>一个topic</p>
+</li>
+<li><p>**Kafka ActiveMQ RabbitMQ对比</p>
+</li>
+</ul>
+<p><strong>1、 TPS</strong></p>
+<ul>
+<li>Kafka最高，RabbitMq次之，ActiveMq最差</li>
+</ul>
+<p><strong>2、 吞吐量对比</strong><br>kafka具有高的吞吐量，内部采用消息的批量处理，zero-copy机制，数据的存储和获取是本地磁盘顺序批量操作，具有O(1)复杂度，消息处理的效率很高。</p>
+<p>Zero-Copy技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">通常情况下文件从读取到通过Socket发送进行了4次拷贝：</span><br><span class="line">1、调用read时，文件A拷贝到了kernel模式；</span><br><span class="line">2、CPU控制将kernel模式数据copy到user模式下；</span><br><span class="line">3、调用write时，先将user模式下的内容copy到kernel模式下的socket的buffer中；</span><br><span class="line">4、将kernel模式下的socket buffer的数据copy到网卡设备中传送；</span><br><span class="line"></span><br><span class="line">Zero-Copy技术省去了将操作系统的read buffer拷贝到程序的buffer，以及从程序buffer拷贝到socket buffer的步骤，</span><br><span class="line">1、将文件拷贝到kernel buffer中；</span><br><span class="line">2、向socket buffer中追加当前要发生的数据在kernel buffer中的位置和偏移量；</span><br><span class="line">3、根据socket buffer中的位置和偏移量直接将kernel buffer的数据copy到网卡设备（protocol engine）中；</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、在架构模型方面</strong><br>RabbitMQ实现了AMQP协议（advanced message queue protocol高级消息队列协议）<br>RabbitMQ有消息确认机制；<br>Kafka遵从一般的MQ结构，无消息确认机制。<br><strong>4、在可用性方面</strong><br>RabbitMQ支持miror的queue，主queue失效，miror queue接管。<br>Kafka的broker支持主备模式<br>ActiveMq也支持主备模式</p>
+<ul>
+<li><strong>Kafka的优缺点</strong></li>
+<li>优点：<ul>
+<li>主要用来解决百万级别的数据中生产者和消费者之间数据传输</li>
+<li>可以将一条数据提供给多个接受短做不同的处理</li>
+<li>两个系统间的通讯</li>
+<li>做为日志的收集的一环</li>
+<li>kafka吞吐量高，单机吞吐量kafka达十万级，而ActiveMQ，RabbitMQ，RocketMQ的吞吐量为万级。</li>
+<li>分布式容灾好</li>
+<li>数据量不会影响到KafKa的速度</li>
 </ul>
 </li>
-<li><p>git clone</p>
-</li>
-<li><p>git status</p>
-</li>
-<li><p>git log</p>
-</li>
-<li><p>git add</p>
-</li>
-<li><p>git diff</p>
-</li>
-<li><p>git commit</p>
-</li>
-<li><p>git reset</p>
-</li>
-<li><p>git revert</p>
-</li>
-<li><p>git rm</p>
-</li>
-<li><p>git clean</p>
-</li>
-<li><p>git mv</p>
-</li>
-<li><p>git stash</p>
-</li>
-<li><p>git branch</p>
-</li>
-<li><p>git checkout</p>
-</li>
-<li><p>git merge</p>
-</li>
-<li><p>git tag</p>
-</li>
-<li><p>git remote</p>
-</li>
-<li><p>git fetch</p>
-</li>
-<li><p>git pull</p>
-</li>
-<li><p>git rebase</p>
-</li>
-<li><p>git push</p>
+<li>缺点：<ul>
+<li>不支持事务</li>
+<li>重复消息。Kafka保证每条消息至少送达一次，虽然几率很小，但一条消息可能被送达多次</li>
+<li>消息乱序。Kafka某一个固定的Partition内部的消息是保证有序的，如果一个Topic有多个Partition，partition之间的消息送达不保证有序。</li>
+<li>复杂性。Kafka需要Zookeeper的支持，Topic一般需要人工创建，部署和维护比一般MQ成本更高</li>
+</ul>
 </li>
 </ul>
 
@@ -134,7 +120,7 @@
         
   
   <div class="tags">
-    <a href="/tags/git/">git</a>
+    <a href="/tags/kafka/">kafka</a>
   </div>
 
         <!-- partial('post/share') -->

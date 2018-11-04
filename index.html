@@ -64,6 +64,82 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-11-02T08:41:59.000Z"><a href="/2018/11/02/Kafka/kafka/">2018-11-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/11/02/Kafka/kafka/">kafka</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>kafka是一个分布式消息队列。具有高性能、持久化、多副本备份、横向拓展能力。</li>
+<li><p>kafka对外使用topic的概率，生产者往topic里写消息，消费者从topic中读消息。为了做到水平扩展，<br>一个topic</p>
+</li>
+<li><p>**Kafka ActiveMQ RabbitMQ对比</p>
+</li>
+</ul>
+<p><strong>1、 TPS</strong></p>
+<ul>
+<li>Kafka最高，RabbitMq次之，ActiveMq最差</li>
+</ul>
+<p><strong>2、 吞吐量对比</strong><br>kafka具有高的吞吐量，内部采用消息的批量处理，zero-copy机制，数据的存储和获取是本地磁盘顺序批量操作，具有O(1)复杂度，消息处理的效率很高。</p>
+<p>Zero-Copy技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">通常情况下文件从读取到通过Socket发送进行了4次拷贝：</span><br><span class="line">1、调用read时，文件A拷贝到了kernel模式；</span><br><span class="line">2、CPU控制将kernel模式数据copy到user模式下；</span><br><span class="line">3、调用write时，先将user模式下的内容copy到kernel模式下的socket的buffer中；</span><br><span class="line">4、将kernel模式下的socket buffer的数据copy到网卡设备中传送；</span><br><span class="line"></span><br><span class="line">Zero-Copy技术省去了将操作系统的read buffer拷贝到程序的buffer，以及从程序buffer拷贝到socket buffer的步骤，</span><br><span class="line">1、将文件拷贝到kernel buffer中；</span><br><span class="line">2、向socket buffer中追加当前要发生的数据在kernel buffer中的位置和偏移量；</span><br><span class="line">3、根据socket buffer中的位置和偏移量直接将kernel buffer的数据copy到网卡设备（protocol engine）中；</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、在架构模型方面</strong><br>RabbitMQ实现了AMQP协议（advanced message queue protocol高级消息队列协议）<br>RabbitMQ有消息确认机制；<br>Kafka遵从一般的MQ结构，无消息确认机制。<br><strong>4、在可用性方面</strong><br>RabbitMQ支持miror的queue，主queue失效，miror queue接管。<br>Kafka的broker支持主备模式<br>ActiveMq也支持主备模式</p>
+<ul>
+<li><strong>Kafka的优缺点</strong></li>
+<li>优点：<ul>
+<li>主要用来解决百万级别的数据中生产者和消费者之间数据传输</li>
+<li>可以将一条数据提供给多个接受短做不同的处理</li>
+<li>两个系统间的通讯</li>
+<li>做为日志的收集的一环</li>
+<li>kafka吞吐量高，单机吞吐量kafka达十万级，而ActiveMQ，RabbitMQ，RocketMQ的吞吐量为万级。</li>
+<li>分布式容灾好</li>
+<li>数据量不会影响到KafKa的速度</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>不支持事务</li>
+<li>重复消息。Kafka保证每条消息至少送达一次，虽然几率很小，但一条消息可能被送达多次</li>
+<li>消息乱序。Kafka某一个固定的Partition内部的消息是保证有序的，如果一个Topic有多个Partition，partition之间的消息送达不保证有序。</li>
+<li>复杂性。Kafka需要Zookeeper的支持，Topic一般需要人工创建，部署和维护比一般MQ成本更高</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/kafka/">kafka</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-10-31T02:21:53.000Z"><a href="/2018/10/31/Linux/Linux常用命令/">2018-10-31</a></time>
       
       
@@ -74,13 +150,18 @@
     </header>
     <div class="entry">
       
-        <h2 id="查看使用内存最多的10个进程"><a href="#查看使用内存最多的10个进程" class="headerlink" title="查看使用内存最多的10个进程"></a>查看使用内存最多的10个进程</h2><ul>
-<li>ps -aux | sort -k4nr | head -n 10</li>
-<li>top （然后按下M，注意大写）</li>
-</ul>
-<h2 id="查看使用CPU最多的10个进程"><a href="#查看使用CPU最多的10个进程" class="headerlink" title="查看使用CPU最多的10个进程"></a>查看使用CPU最多的10个进程</h2><ul>
-<li>ps -aux | sort -k3nr | head -n 10</li>
-<li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （然后按下P，注意大写)</h2><p>ps命令参数解释<br>-a ： 显示现行终端机下的所有进程，包括其他用户的进程；<br>-u ： 以用户为主的进程状态 ；<br>x ： 通常与 a 这个参数一起使用，可列出较完整信息。</p>
+        <ul>
+<li><p><strong><font color="#000" face="微软雅黑">查看使用内存最多的10个进程</font></strong></p>
+</li>
+<li><p>ps -aux | sort -k4nr | head -n 10</p>
+</li>
+<li><p>top （然后按下M，注意大写）</p>
+</li>
+<li><p><strong><font color="#000" face="微软雅黑">查看使用CPU最多的10个进程</font></strong></p>
+</li>
+<li><p>ps -aux | sort -k3nr | head -n 10</p>
+</li>
+<li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （<font color="#FF0000" face="微软雅黑">然后按下P，注意大写</font>)</h2><p>ps命令参数解释<br>-a ： 显示现行终端机下的所有进程，包括其他用户的进程；<br>-u ： 以用户为主的进程状态 ；<br>x ： 通常与 a 这个参数一起使用，可列出较完整信息。</p>
 <h2 id="查看网卡流量"><a href="#查看网卡流量" class="headerlink" title="查看网卡流量"></a>查看网卡流量</h2><ul>
 <li>watch more /proc/net/dev  可以查看每2秒的字节和数据包的变化</li>
 </ul>
@@ -123,7 +204,7 @@
     </header>
     <div class="entry">
       
-        <p>Linux文本处理常用命令：<strong>grep、sed、printf、awk</strong></p>
+        <p>Linux文本处理常用命令：<strong>grep、sed、printf、awk、cut、sort</strong></p>
 <h2 id="1-grep"><a href="#1-grep" class="headerlink" title="1. grep"></a>1. grep</h2><p>按行查找字符，输出包含字符的行<br>用法</p>
 <ol>
 <li>grep ‘key’ test.txt</li>
@@ -173,7 +254,7 @@
 <li>行替换<br>sed ‘2,5c abc’　　//将第2到5行替换为一行字符串”abc”</li>
 <li>字符串替换<br>sed ‘s/要被替换的字符串/新的字符串/g’ /可以是#号之类的，在被替换的字符串包含/时，可以考虑别的分隔符。要被替换的字符串可以是<br>正则表达式</li>
 </ol>
-<p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p>
+<p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">操作特定区间或规则的行</span><br><span class="line">sed &apos;8,$s/aa/AA/g&apos; test.txt 对第8行到文件末尾的所有行进行搜索替换操作</span><br><span class="line">sed &apos;/^[0-9]/s/aa/AA/g&apos; test.txt 正则表达式表示对所有以数字开头的行，执行s操作</span><br><span class="line"></span><br><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-printf"><a href="#3-printf" class="headerlink" title="3. printf"></a>3. printf</h2><p>格式化并打印数据<br>printf ‘%10s %10s %10s %10s %10s \n’ <code>cat test.txt</code>    %10s代表这一列的宽度固定为10个字符<br>%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）</p>
 <h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号<br>FS=”,”：以”,”分割行<br>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p>
 <ol>
@@ -298,6 +379,30 @@
 <h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>只过滤相邻的重复行。</p>
 <ul>
 <li>-c, –count        在每行前加上表示相应行目出现次数的前缀编号</li>
+</ul>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><ul>
+<li>find base_path 列出当前目录和子目录下的所有文件和文件夹</li>
+<li>find path -name ‘*txt’ 根据文件名或者正则表达式匹配搜索</li>
+<li>find path -iname ‘*txt’ 同上，忽略大小写</li>
+<li>find path ! -name ‘*txt’ 对上面的搜索结果取反</li>
+<li>find path -type d 根据文件类型搜索，d文件夹，f普通文件，etc</li>
+<li>find path -type f -size +2k 根据文件大小搜索，+2k大于2k的文件，-2k小于2k的文件，2k等你2k的文件</li>
+<li>find path -type f -name ‘*txt’ -delete 删除匹配到的文件</li>
+<li>find path -mtime -2 查找文件更新日时在距现在时刻二天以内的文件</li>
+<li>find path -mtime +2 查找文件更新日时在距现在时刻二天以上的文件</li>
+<li>find path -mtime 2 查找文件更新日时在距现在时刻一天以上二天以内的文件</li>
+<li>find path -mmin -2 查找文件更新日时在距现在时刻二分以内的文件</li>
+<li>find path -mmin +2 查找文件更新日时在距现在时刻二分以上的文件</li>
+<li>find path -mmin 2 查找文件更新日时在距现在时刻一分以上二分以内的文件</li>
+<li>find path -perm 664 查找权限为664的文件或目录(需完全符合)</li>
+<li>find path -empty 查找空文件或空目录</li>
+<li>find path -empty -type f -print -delete查找空文件并删除</li>
+<li>find path -size -10c 查找文件size小于10个字节的文件或目录</li>
+<li>find path -size 10c 查找文件size等于10个字节的文件或目录</li>
+<li>find path -size +10c 查找文件size大于10个字节的文件或目录</li>
+<li>find path -size -10k 查找文件size小于10k的文件或目录</li>
+<li>find path -size -10M 查找文件size小于10M的文件或目录</li>
+<li>find path -size -10G 查找文件size小于10G的文件或目录</li>
 </ul>
 
       
@@ -700,52 +805,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-15T08:05:35.909Z"><a href="/2018/10/15/hello-world/">2018-10-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/15/hello-world/">Hello World</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -771,6 +830,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2018/11/02/Kafka/kafka/">kafka</a>
+      </li>
+    
+      <li>
         <a href="/2018/10/31/Linux/Linux常用命令/">Linux常用命令</a>
       </li>
     
@@ -784,10 +847,6 @@
     
       <li>
         <a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">Git创建本地分支并关联远程分支</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/19/Git/Git常用命令/">Git常用命令</a>
       </li>
     
   </ul>
@@ -809,6 +868,8 @@
   
     <li><a href="/tags/java并发/">java并发</a><small>1</small></li>
   
+    <li><a href="/tags/kafka/">kafka</a><small>1</small></li>
+  
     <li><a href="/tags/linux/">linux</a><small>2</small></li>
   
     <li><a href="/tags/悟/">悟</a><small>1</small></li>
@@ -823,7 +884,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
