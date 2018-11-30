@@ -64,7 +64,156 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-11-02T08:41:59.000Z"><a href="/2018/11/02/Kafka/kafka/">2018-11-02</a></time>
+        <time datetime="2018-11-08T03:44:59.000Z"><a href="/2018/11/08/React学习/React总结/">2018-11-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/11/08/React学习/React总结/">React总结</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="React特点："><a href="#React特点：" class="headerlink" title="React特点："></a>React特点：</h4><ul>
+<li><p>虚拟dom</p>
+<ul>
+<li>简单的UI开发逻辑</li>
+<li>组件化<ul>
+<li>一个组件应该具有的特征：</li>
+</ul>
+</li>
+<li>可组合</li>
+<li>可重用</li>
+<li>可维护<h4 id="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"><a href="#Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写" class="headerlink" title="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"></a>Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写</h4></li>
+</ul>
+</li>
+<li><p>组件的生命周期：</p>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<p>和组件生命周期相关的几个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getDefaultProps //创建组建</span><br><span class="line">getInitialState  //实例化状态</span><br><span class="line">componentWillMount  //挂载前</span><br><span class="line">componentDidMount //挂载后</span><br><span class="line">componentWillReceiveProps //属性被改变时</span><br><span class="line">shouldComponentUpdate //是否更新</span><br><span class="line">componentWillUpdate //更新前</span><br><span class="line">componentDidUpdate //更新后</span><br><span class="line">componentWillUnmount //销毁前</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1、ReactJs是基于组件化的开发，所以最终的页面应该是由若干个小组件组成的大组件。</p>
+</li>
+<li>2、可以通过属性，将值传递到组件内部，同理也可以通过属性将内部的结果传递到父级组件(留给大家研究)；要对某些值的变化做DOM操作的，要把这些值放到state中。</li>
+<li>3、为组件添加外部<code>css</code>样式时，类名应该写成<code>className</code>而不是<code>class</code>;<br><code>for</code>是<code>htmlFor</code>，添加内部样式时，应该是style=&#123;&#123;opacity: this.state.opacity&#125;&#125;<br>而不是<code>style=&quot;opacity:{this.state.opacity};&quot;</code>。</li>
+<li>4、组件名称首字母必须大写。</li>
+<li>5、变量名用<code>{}</code>包裹，且不能加双引号。<h4 id="ReactJS优缺点："><a href="#ReactJS优缺点：" class="headerlink" title="ReactJS优缺点："></a>ReactJS优缺点：</h4></li>
+<li>优点：<ul>
+<li>React速度很快</li>
+<li>浏览器兼容 兼容到IE8</li>
+<li>模块化（1、 模块化组件 2、 对于每个组件方便独立进行开发和测试，提高了代码可维护性）</li>
+<li>单向数据流</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>React只是MVC中V，并不是一个完整的框架<h4 id="React创建组件："><a href="#React创建组件：" class="headerlink" title="React创建组件："></a>React创建组件：</h4></li>
+</ul>
+</li>
+<li><p>1.创建组件两种方式：</p>
+<ul>
+<li>无状态组件</li>
+<li>类组件（ES6的class）</li>
+</ul>
+</li>
+<li>2.原则：遵守单一职责的原则</li>
+<li>3.一个类组件包含：<ul>
+<li>属性：<code>props</code></li>
+<li>内部状态</li>
+<li>处理逻辑</li>
+<li>事件处理</li>
+<li>渲染：<code>render</code></li>
+<li>生命周期函数</li>
+</ul>
+</li>
+<li>4.组件创建技巧<ul>
+<li>尽可能无状态化</li>
+<li>减少冗余</li>
+<li>创建多个只负责渲染数据的无状态组件，在他们的上层创建一个有状态的组件并把状态通过props传递给子级</li>
+<li>有状态组件封装了所有用户的交互逻辑，无状态组件只负责声明式渲染</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/react/">react</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-11-05T11:34:32.000Z"><a href="/2018/11/05/缓存/Redis和Memcache/">2018-11-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/11/05/缓存/Redis和Memcache/">Redis和Memcache</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li><strong>Redis和Memcahe的对比</strong><ul>
+<li>Redis不仅支持键值对的存储，还支持list，set，hash，zset（有序集合）数据结构的存储<br>+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-11-02T13:00:00.000Z"><a href="/2018/11/02/Kafka/kafka/">2018-11-02</a></time>
       
       
   
@@ -140,7 +289,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-31T02:21:53.000Z"><a href="/2018/10/31/Linux/Linux常用命令/">2018-10-31</a></time>
+        <time datetime="2018-10-31T13:00:00.000Z"><a href="/2018/10/31/Linux/Linux常用命令/">2018-10-31</a></time>
       
       
   
@@ -161,7 +310,8 @@
 </li>
 <li><p>ps -aux | sort -k3nr | head -n 10</p>
 </li>
-<li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （<font color="#FF0000" face="微软雅黑">然后按下P，注意大写</font>)</h2><p>ps命令参数解释<br>-a ： 显示现行终端机下的所有进程，包括其他用户的进程；<br>-u ： 以用户为主的进程状态 ；<br>x ： 通常与 a 这个参数一起使用，可列出较完整信息。</p>
+<li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （<font color="#FF0000" face="微软雅黑">然后按下P，注意大写</font>)</h2><p>ps命令参数解释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-a ： 显示现行终端机下的所有进程，包括其他用户的进程；</span><br><span class="line">-u ： 以用户为主的进程状态 ；</span><br><span class="line">x ： 通常与 a 这个参数一起使用，可列出较完整信息。</span><br></pre></td></tr></table></figure>
 <h2 id="查看网卡流量"><a href="#查看网卡流量" class="headerlink" title="查看网卡流量"></a>查看网卡流量</h2><ul>
 <li>watch more /proc/net/dev  可以查看每2秒的字节和数据包的变化</li>
 </ul>
@@ -194,7 +344,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-30T07:10:41.000Z"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">2018-10-30</a></time>
+        <time datetime="2018-10-30T13:00:00.000Z"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">2018-10-30</a></time>
       
       
   
@@ -339,7 +489,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-30T06:58:48.000Z"><a href="/2018/10/30/Linux/Linux命令/">2018-10-30</a></time>
+        <time datetime="2018-10-30T12:00:00.000Z"><a href="/2018/10/30/Linux/Linux命令/">2018-10-30</a></time>
       
       
   
@@ -659,52 +809,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-17T10:05:34.000Z"><a href="/2018/10/17/Journey/幽静的小路/">2018-10-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/17/Journey/幽静的小路/">幽静的小路</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>  蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，<br>导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。<br>回想起来，当自己再经历一遍时，发现我还是不能改变环境和别人对我的影响，那时候的我是在感情用事吗？还是自己没有气度呢？<br>唯一能做的是改变自己，改变自己的心态和状态。</p>
-<h2 id="人可以不认识人，但是灵魂认识灵魂"><a href="#人可以不认识人，但是灵魂认识灵魂" class="headerlink" title="人可以不认识人，但是灵魂认识灵魂"></a>人可以不认识人，但是灵魂认识灵魂</h2><h2 id="如果你抓住深渊不放，深渊也会抓住你不放"><a href="#如果你抓住深渊不放，深渊也会抓住你不放" class="headerlink" title="如果你抓住深渊不放，深渊也会抓住你不放"></a>如果你抓住深渊不放，深渊也会抓住你不放</h2><h2 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h2><p>   凡是有的，还要加给他，叫他多余。没有的，连他所有的，也要夺过来。任何时候，不要太悲伤，其实自己拥有很多，so far so good。</p>
-<p>一个人有多好就有多坏，常怀慈悲之心，生而为人，务必善良。</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/悟/">悟</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-17T09:07:10.000Z"><a href="/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/">2018-10-17</a></time>
+        <time datetime="2018-10-17T13:00:00.000Z"><a href="/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/">2018-10-17</a></time>
       
       
   
@@ -747,64 +852,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-15T10:30:53.000Z"><a href="/2018/10/15/Java/java关键字transient-volatile/">2018-10-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/15/Java/java关键字transient-volatile/">java关键字transient,volatile</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="被transient关键字修饰的变量不会被序列化"><a href="#被transient关键字修饰的变量不会被序列化" class="headerlink" title="被transient关键字修饰的变量不会被序列化"></a>被transient关键字修饰的变量不会被序列化</h3><h3 id="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"><a href="#被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性" class="headerlink" title="被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是不具备原子性"></a>被volatile关键字修饰的变量，每次被线程访问时，都会强制从共享内存中重读改变量的值，但是<strong>不具备原子性</strong></h3><h2 id="被volatile关键字修饰的变量的，具有以下两点特性："><a href="#被volatile关键字修饰的变量的，具有以下两点特性：" class="headerlink" title="被volatile关键字修饰的变量的，具有以下两点特性："></a>被volatile关键字修饰的变量的，具有以下两点特性：</h2><ol>
-<li>保证了不同线程对该变量操作的内存可见性，不保证原子性。</li>
-<li>禁止指令重排序</li>
-</ol>
-<hr>
-<p>在java的内存模型中，JMM规定对于多个线程共享变量都存在主存中的，每个线程包含自己的工作内存，工作内存保存了主内存共享的变量，<br>其中一个线程要操作这些共享变量，只能通过操作工作内存中的副本来实现，操作完毕之后再同步会主内存中。在其他线程未将共享变量同步<br>会自己的工作内存之前，共享变量的改变对其不可见的。也就是说其他线程的工作内存中的变量已经过时了。</p>
-<p>volatile是通过内存屏障和禁止指令重排序来保证内存可见性的，一个线程对volatile变量的修改，能即刻被其他线程所见，<br>但是不保证原子性。</p>
-<p>使用volatile提供理想的线程安全，需要满足以下两个条件：</p>
-<ol>
-<li>对变量的写操作不依赖于当前值</li>
-<li>该变量没有包含在具有其他变量的不变式中</li>
-</ol>
-<p>volatile变量不能用来做<strong>线程安全的计数器</strong></p>
-<p>volatile的适用场景</p>
-<h2 id="1-状态标志"><a href="#1-状态标志" class="headerlink" title="1. 状态标志"></a>1. 状态标志</h2><p>注意：这种状态标记<strong>通常只有一种状态转换</strong>如果需要状态的来回转换，可以使用原子变量。</p>
-<h2 id="2-一次性安全发布"><a href="#2-一次性安全发布" class="headerlink" title="2. 一次性安全发布"></a>2. 一次性安全发布</h2><h2 id="3-独立观察"><a href="#3-独立观察" class="headerlink" title="3. 独立观察"></a>3. 独立观察</h2><p>定期“发布”观察结果供程序内部使用</p>
-<h2 id="4-“volatile-bean”模式"><a href="#4-“volatile-bean”模式" class="headerlink" title="4. “volatile bean”模式"></a>4. “volatile bean”模式</h2><h2 id="5-开销较低“读-写锁”策略"><a href="#5-开销较低“读-写锁”策略" class="headerlink" title="5. 开销较低“读-写锁”策略"></a>5. 开销较低“读-写锁”策略</h2><hr>
-<ul>
-<li>状态位</li>
-<li>一个线程写，多个线程读的场景</li>
-</ul>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -830,6 +877,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2018/11/08/React学习/React总结/">React总结</a>
+      </li>
+    
+      <li>
+        <a href="/2018/11/05/缓存/Redis和Memcache/">Redis和Memcache</a>
+      </li>
+    
+      <li>
         <a href="/2018/11/02/Kafka/kafka/">kafka</a>
       </li>
     
@@ -839,14 +894,6 @@
     
       <li>
         <a href="/2018/10/30/Linux/Linux文本处理常用命令/">Linux文本处理常用命令</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/30/Linux/Linux命令/">Linux命令</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">Git创建本地分支并关联远程分支</a>
       </li>
     
   </ul>
@@ -872,6 +919,8 @@
   
     <li><a href="/tags/linux/">linux</a><small>2</small></li>
   
+    <li><a href="/tags/react/">react</a><small>1</small></li>
+  
     <li><a href="/tags/悟/">悟</a><small>1</small></li>
   
     <li><a href="/tags/设计模式/">设计模式</a><small>1</small></li>
@@ -884,7 +933,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 

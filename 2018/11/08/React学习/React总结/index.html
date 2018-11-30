@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>Hello World | plgy_y</title>
+  <title>React总结 | plgy_y</title>
   <meta name="author" content="yangyuan" />
 
   
@@ -14,7 +14,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="Hello World" />
+  <meta property="og:title" content="React总结" />
   <meta property="og:site_name" content="plgy_y" />
 
   
@@ -63,25 +63,80 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-15T08:05:35.909Z"><a href="/2018/10/15/hello-world/">2018-10-15</a></time>
+        <time datetime="2018-11-08T03:44:59.000Z"><a href="/2018/11/08/React学习/React总结/">2018-11-08</a></time>
       
       
   
-    <h1 class="title">Hello World</h1>
+    <h1 class="title">React总结</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h4 id="React特点："><a href="#React特点：" class="headerlink" title="React特点："></a>React特点：</h4><ul>
+<li><p>虚拟dom</p>
+<ul>
+<li>简单的UI开发逻辑</li>
+<li>组件化<ul>
+<li>一个组件应该具有的特征：</li>
+</ul>
+</li>
+<li>可组合</li>
+<li>可重用</li>
+<li>可维护<h4 id="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"><a href="#Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写" class="headerlink" title="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"></a>Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写</h4></li>
+</ul>
+</li>
+<li><p>组件的生命周期：</p>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<p>和组件生命周期相关的几个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getDefaultProps //创建组建</span><br><span class="line">getInitialState  //实例化状态</span><br><span class="line">componentWillMount  //挂载前</span><br><span class="line">componentDidMount //挂载后</span><br><span class="line">componentWillReceiveProps //属性被改变时</span><br><span class="line">shouldComponentUpdate //是否更新</span><br><span class="line">componentWillUpdate //更新前</span><br><span class="line">componentDidUpdate //更新后</span><br><span class="line">componentWillUnmount //销毁前</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1、ReactJs是基于组件化的开发，所以最终的页面应该是由若干个小组件组成的大组件。</p>
+</li>
+<li>2、可以通过属性，将值传递到组件内部，同理也可以通过属性将内部的结果传递到父级组件(留给大家研究)；要对某些值的变化做DOM操作的，要把这些值放到state中。</li>
+<li>3、为组件添加外部<code>css</code>样式时，类名应该写成<code>className</code>而不是<code>class</code>;<br><code>for</code>是<code>htmlFor</code>，添加内部样式时，应该是style=&#123;&#123;opacity: this.state.opacity&#125;&#125;<br>而不是<code>style=&quot;opacity:{this.state.opacity};&quot;</code>。</li>
+<li>4、组件名称首字母必须大写。</li>
+<li>5、变量名用<code>{}</code>包裹，且不能加双引号。<h4 id="ReactJS优缺点："><a href="#ReactJS优缺点：" class="headerlink" title="ReactJS优缺点："></a>ReactJS优缺点：</h4></li>
+<li>优点：<ul>
+<li>React速度很快</li>
+<li>浏览器兼容 兼容到IE8</li>
+<li>模块化（1、 模块化组件 2、 对于每个组件方便独立进行开发和测试，提高了代码可维护性）</li>
+<li>单向数据流</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>React只是MVC中V，并不是一个完整的框架<h4 id="React创建组件："><a href="#React创建组件：" class="headerlink" title="React创建组件："></a>React创建组件：</h4></li>
+</ul>
+</li>
+<li><p>1.创建组件两种方式：</p>
+<ul>
+<li>无状态组件</li>
+<li>类组件（ES6的class）</li>
+</ul>
+</li>
+<li>2.原则：遵守单一职责的原则</li>
+<li>3.一个类组件包含：<ul>
+<li>属性：<code>props</code></li>
+<li>内部状态</li>
+<li>处理逻辑</li>
+<li>事件处理</li>
+<li>渲染：<code>render</code></li>
+<li>生命周期函数</li>
+</ul>
+</li>
+<li>4.组件创建技巧<ul>
+<li>尽可能无状态化</li>
+<li>减少冗余</li>
+<li>创建多个只负责渲染数据的无状态组件，在他们的上层创建一个有状态的组件并把状态通过props传递给子级</li>
+<li>有状态组件封装了所有用户的交互逻辑，无状态组件只负责声明式渲染</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -93,6 +148,11 @@
         </div>
         
         
+  
+  <div class="tags">
+    <a href="/tags/react/">react</a>
+  </div>
+
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
     </footer>

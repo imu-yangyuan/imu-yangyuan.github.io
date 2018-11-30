@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-04T11:03:47.839Z</updated>
+  <updated>2018-11-30T11:15:05.460Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>React总结</title>
+    <link href="http://yoursite.com/2018/11/08/React%E5%AD%A6%E4%B9%A0/React%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2018/11/08/React学习/React总结/</id>
+    <published>2018-11-08T03:44:59.000Z</published>
+    <updated>2018-11-30T11:15:05.460Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="React特点："><a href="#React特点：" class="headerlink" title="React特点："></a>React特点：</h4><ul><li><p>虚拟dom</p><ul><li>简单的UI开发逻辑</li><li>组件化<ul><li>一个组件应该具有的特征：</li></ul></li><li>可组合</li><li>可重用</li><li>可维护<h4 id="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"><a href="#Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写" class="headerlink" title="Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写"></a>Jsx语法：在html中直接写Js代码，不加任何引号，允许html和js混写</h4></li></ul></li><li><p>组件的生命周期：</p><ul><li>Mounting：已插入真实 DOM</li><li>Updating：正在被重新渲染</li><li>Unmounting：已移出真实 DOM</li></ul><p>和组件生命周期相关的几个方法：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getDefaultProps //创建组建</span><br><span class="line">getInitialState  //实例化状态</span><br><span class="line">componentWillMount  //挂载前</span><br><span class="line">componentDidMount //挂载后</span><br><span class="line">componentWillReceiveProps //属性被改变时</span><br><span class="line">shouldComponentUpdate //是否更新</span><br><span class="line">componentWillUpdate //更新前</span><br><span class="line">componentDidUpdate //更新后</span><br><span class="line">componentWillUnmount //销毁前</span><br></pre></td></tr></table></figure></li><li><p>1、ReactJs是基于组件化的开发，所以最终的页面应该是由若干个小组件组成的大组件。</p></li><li>2、可以通过属性，将值传递到组件内部，同理也可以通过属性将内部的结果传递到父级组件(留给大家研究)；要对某些值的变化做DOM操作的，要把这些值放到state中。</li><li>3、为组件添加外部<code>css</code>样式时，类名应该写成<code>className</code>而不是<code>class</code>;<br><code>for</code>是<code>htmlFor</code>，添加内部样式时，应该是style=&#123;&#123;opacity: this.state.opacity&#125;&#125;<br>而不是<code>style=&quot;opacity:{this.state.opacity};&quot;</code>。</li><li>4、组件名称首字母必须大写。</li><li>5、变量名用<code>{}</code>包裹，且不能加双引号。<h4 id="ReactJS优缺点："><a href="#ReactJS优缺点：" class="headerlink" title="ReactJS优缺点："></a>ReactJS优缺点：</h4></li><li>优点：<ul><li>React速度很快</li><li>浏览器兼容 兼容到IE8</li><li>模块化（1、 模块化组件 2、 对于每个组件方便独立进行开发和测试，提高了代码可维护性）</li><li>单向数据流</li></ul></li><li><p>缺点：</p><ul><li>React只是MVC中V，并不是一个完整的框架<h4 id="React创建组件："><a href="#React创建组件：" class="headerlink" title="React创建组件："></a>React创建组件：</h4></li></ul></li><li><p>1.创建组件两种方式：</p><ul><li>无状态组件</li><li>类组件（ES6的class）</li></ul></li><li>2.原则：遵守单一职责的原则</li><li>3.一个类组件包含：<ul><li>属性：<code>props</code></li><li>内部状态</li><li>处理逻辑</li><li>事件处理</li><li>渲染：<code>render</code></li><li>生命周期函数</li></ul></li><li>4.组件创建技巧<ul><li>尽可能无状态化</li><li>减少冗余</li><li>创建多个只负责渲染数据的无状态组件，在他们的上层创建一个有状态的组件并把状态通过props传递给子级</li><li>有状态组件封装了所有用户的交互逻辑，无状态组件只负责声明式渲染</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;React特点：&quot;&gt;&lt;a href=&quot;#React特点：&quot; class=&quot;headerlink&quot; title=&quot;React特点：&quot;&gt;&lt;/a&gt;React特点：&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;虚拟dom&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单的UI开发逻辑&lt;/li&gt;
+&lt;li
+      
+    
+    </summary>
+    
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis和Memcache</title>
+    <link href="http://yoursite.com/2018/11/05/%E7%BC%93%E5%AD%98/Redis%E5%92%8CMemcache/"/>
+    <id>http://yoursite.com/2018/11/05/缓存/Redis和Memcache/</id>
+    <published>2018-11-05T11:34:32.000Z</published>
+    <updated>2018-11-30T11:00:00.987Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><strong>Redis和Memcahe的对比</strong><ul><li>Redis不仅支持键值对的存储，还支持list，set，hash，zset（有序集合）数据结构的存储<br>+</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Redis和Memcahe的对比&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Redis不仅支持键值对的存储，还支持list，set，hash，zset（有序集合）数据结构的存储&lt;br&gt;+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>kafka</title>
     <link href="http://yoursite.com/2018/11/02/Kafka/kafka/"/>
     <id>http://yoursite.com/2018/11/02/Kafka/kafka/</id>
-    <published>2018-11-02T08:41:59.000Z</published>
-    <updated>2018-11-04T11:03:47.839Z</updated>
+    <published>2018-11-02T13:00:00.000Z</published>
+    <updated>2018-11-04T11:08:15.512Z</updated>
     
     <content type="html"><![CDATA[<ul><li>kafka是一个分布式消息队列。具有高性能、持久化、多副本备份、横向拓展能力。</li><li><p>kafka对外使用topic的概念，生产者往topic里写消息，消费者从topic中读消息。一个topic实际是由多个partition组成的，遇到瓶颈时，<br>可以通过增加partition的数量来进行横向扩容。单个parition内是保证消息有序。</p></li><li><p>**Kafka ActiveMQ RabbitMQ对比</p></li></ul><p><strong>1、 TPS</strong></p><ul><li>Kafka最高，RabbitMq次之，ActiveMq最差</li></ul><p><strong>2、 吞吐量对比</strong><br>kafka具有高的吞吐量，内部采用消息的批量处理，zero-copy机制，数据的存储和获取是本地磁盘顺序批量操作，具有O(1)复杂度，消息处理的效率很高。</p><p>Zero-Copy技术<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">通常情况下文件从读取到通过Socket发送进行了4次拷贝：</span><br><span class="line">1、调用read时，文件A拷贝到了kernel模式；</span><br><span class="line">2、CPU控制将kernel模式数据copy到user模式下；</span><br><span class="line">3、调用write时，先将user模式下的内容copy到kernel模式下的socket的buffer中；</span><br><span class="line">4、将kernel模式下的socket buffer的数据copy到网卡设备中传送；</span><br><span class="line"></span><br><span class="line">Zero-Copy技术省去了将操作系统的read buffer拷贝到程序的buffer，以及从程序buffer拷贝到socket buffer的步骤，</span><br><span class="line">1、将文件拷贝到kernel buffer中；</span><br><span class="line">2、向socket buffer中追加当前要发生的数据在kernel buffer中的位置和偏移量；</span><br><span class="line">3、根据socket buffer中的位置和偏移量直接将kernel buffer的数据copy到网卡设备（protocol engine）中；</span><br></pre></td></tr></table></figure></p><p><strong>3、在架构模型方面</strong><br>RabbitMQ实现了AMQP协议（advanced message queue protocol高级消息队列协议）<br>RabbitMQ有消息确认机制；<br>Kafka遵从一般的MQ结构，无消息确认机制。<br><strong>4、在可用性方面</strong><br>RabbitMQ支持miror的queue，主queue失效，miror queue接管。<br>Kafka的broker支持主备模式<br>ActiveMq也支持主备模式</p><ul><li><strong>Kafka的优缺点</strong></li><li>优点：<ul><li>主要用来解决百万级别的数据中生产者和消费者之间数据传输</li><li>可以将一条数据提供给多个接受短做不同的处理</li><li>两个系统间的通讯</li><li>做为日志的收集的一环</li><li>kafka吞吐量高，单机吞吐量kafka达十万级，而ActiveMQ，RabbitMQ，RocketMQ的吞吐量为万级。</li><li>分布式容灾好</li><li>数据量不会影响到KafKa的速度</li></ul></li><li>缺点：<ul><li>不支持事务</li><li>重复消息。Kafka保证每条消息至少送达一次，虽然几率很小，但一条消息可能被送达多次</li><li>消息乱序。Kafka某一个固定的Partition内部的消息是保证有序的，如果一个Topic有多个Partition，partition之间的消息送达不保证有序。</li><li>复杂性。Kafka需要Zookeeper的支持，Topic一般需要人工创建，部署和维护比一般MQ成本更高</li></ul></li></ul>]]></content>
     
@@ -45,10 +99,10 @@
     <title>Linux常用命令</title>
     <link href="http://yoursite.com/2018/10/31/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2018/10/31/Linux/Linux常用命令/</id>
-    <published>2018-10-31T02:21:53.000Z</published>
-    <updated>2018-11-02T08:06:52.385Z</updated>
+    <published>2018-10-31T13:00:00.000Z</published>
+    <updated>2018-11-05T11:48:00.663Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p><strong><font color="#000" face="微软雅黑">查看使用内存最多的10个进程</font></strong></p></li><li><p>ps -aux | sort -k4nr | head -n 10</p></li><li><p>top （然后按下M，注意大写）</p></li><li><p><strong><font color="#000" face="微软雅黑">查看使用CPU最多的10个进程</font></strong></p></li><li><p>ps -aux | sort -k3nr | head -n 10</p></li><li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （<font color="#FF0000" face="微软雅黑">然后按下P，注意大写</font>)</h2><p>ps命令参数解释<br>-a ： 显示现行终端机下的所有进程，包括其他用户的进程；<br>-u ： 以用户为主的进程状态 ；<br>x ： 通常与 a 这个参数一起使用，可列出较完整信息。</p><h2 id="查看网卡流量"><a href="#查看网卡流量" class="headerlink" title="查看网卡流量"></a>查看网卡流量</h2><ul><li>watch more /proc/net/dev  可以查看每2秒的字节和数据包的变化</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><p><strong><font color="#000" face="微软雅黑">查看使用内存最多的10个进程</font></strong></p></li><li><p>ps -aux | sort -k4nr | head -n 10</p></li><li><p>top （然后按下M，注意大写）</p></li><li><p><strong><font color="#000" face="微软雅黑">查看使用CPU最多的10个进程</font></strong></p></li><li><p>ps -aux | sort -k3nr | head -n 10</p></li><li><h2 id="top-（然后按下P，注意大写"><a href="#top-（然后按下P，注意大写" class="headerlink" title="top （然后按下P，注意大写)"></a>top （<font color="#FF0000" face="微软雅黑">然后按下P，注意大写</font>)</h2><p>ps命令参数解释</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-a ： 显示现行终端机下的所有进程，包括其他用户的进程；</span><br><span class="line">-u ： 以用户为主的进程状态 ；</span><br><span class="line">x ： 通常与 a 这个参数一起使用，可列出较完整信息。</span><br></pre></td></tr></table></figure><h2 id="查看网卡流量"><a href="#查看网卡流量" class="headerlink" title="查看网卡流量"></a>查看网卡流量</h2><ul><li>watch more /proc/net/dev  可以查看每2秒的字节和数据包的变化</li></ul></li></ul>]]></content>
     
     <summary type="html">
     
@@ -70,8 +124,8 @@
     <title>Linux文本处理常用命令</title>
     <link href="http://yoursite.com/2018/10/30/Linux/Linux%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2018/10/30/Linux/Linux文本处理常用命令/</id>
-    <published>2018-10-30T07:10:41.000Z</published>
-    <updated>2018-11-01T12:48:01.757Z</updated>
+    <published>2018-10-30T13:00:00.000Z</published>
+    <updated>2018-11-04T11:08:15.189Z</updated>
     
     <content type="html"><![CDATA[<p>Linux文本处理常用命令：<strong>grep、sed、printf、awk、cut、sort</strong></p><h2 id="1-grep"><a href="#1-grep" class="headerlink" title="1. grep"></a>1. grep</h2><p>按行查找字符，输出包含字符的行<br>用法</p><ol><li>grep ‘key’ test.txt</li><li>cat test.txt|grep ‘key’</li></ol><table><thead><tr><th>参数</th><th>含义及示例</th></tr></thead><tbody><tr><td>-n</td><td>输出结果加行号</td></tr><tr><td>–color=auto</td><td>匹配的关键字高亮显示</td></tr><tr><td>-A2</td><td>输出匹配行的后两行</td></tr><tr><td>-B2</td><td>输出匹配行的前两行</td></tr><tr><td>-v</td><td>反向查找，即输出不包含关键字的行</td></tr><tr><td>-i</td><td>关键字匹配时忽略关键字大小写</td></tr></tbody></table><p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;o\&#123;3\&#125;&apos;　　//查找两个o，这里需要注意，&#123;&#125;在shell里有特殊意义，因此需要转义。</span><br></pre></td></tr></table></figure></p><h4 id="egrep"><a href="#egrep" class="headerlink" title="egrep:"></a>egrep:</h4><p>正则表达式分为基本正则表达式和扩展正则表达式，grep只支持基本正则表达式，如果要使用扩展正则表达式，需要使用egrep命令<br>列如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep &apos;123|1234&apos; //查找123或1234</span><br><span class="line">egrep &apos;1(23|234)5&apos; //查找1235或12345</span><br><span class="line">egrep &apos;1(23)+45&apos; //查找1X45，其中X是一个或一个以上的‘23’字符串</span><br></pre></td></tr></table></figure></p><h2 id="2-sed"><a href="#2-sed" class="headerlink" title="2.sed"></a>2.sed</h2><p>sed可以用来做<strong>行删除、行新增、行选取、行替换、字符串替换</strong><br>使用方式：cat test.txt | sed ‘2d’  或者 sed ‘2d’test.txt</p><ol><li>行删除<br>sed ‘2,5d’ //删除第2-5行<br>sed ‘3,$d’ //删除第3到最后一行<br>sed ‘/^$/d’//删除空行</li><li>行新增<br>sed ‘2a abc’ //在第二行下面追加一行“abc”，a代表append<br>sed ‘2i abc’ //在第二行上面插入一行 “abc”，i代表insert<br>sed ‘2a a\<br>b\<br>c’　　//在第二行下面追加三行 “a”、”b”、”c”，只需要每行结尾加”\”即可。</li><li>行选取<br>sed -n ‘7,9p’　　//选取第5到7行输出，必须加-n参数，不然效果就是所有行都被输出，而7到9行输出两次。</li><li>行替换<br>sed ‘2,5c abc’　　//将第2到5行替换为一行字符串”abc”</li><li>字符串替换<br>sed ‘s/要被替换的字符串/新的字符串/g’ /可以是#号之类的，在被替换的字符串包含/时，可以考虑别的分隔符。要被替换的字符串可以是<br>正则表达式</li></ol><p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">操作特定区间或规则的行</span><br><span class="line">sed &apos;8,$s/aa/AA/g&apos; test.txt 对第8行到文件末尾的所有行进行搜索替换操作</span><br><span class="line">sed &apos;/^[0-9]/s/aa/AA/g&apos; test.txt 正则表达式表示对所有以数字开头的行，执行s操作</span><br><span class="line"></span><br><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p><h2 id="3-printf"><a href="#3-printf" class="headerlink" title="3. printf"></a>3. printf</h2><p>格式化并打印数据<br>printf ‘%10s %10s %10s %10s %10s \n’ <code>cat test.txt</code>    %10s代表这一列的宽度固定为10个字符<br>%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）</p><h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号<br>FS=”,”：以”,”分割行<br>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p><ol><li>加入条件判断后，awk的格式为： awk ‘条件1 {命令1};条件2{命令2}’</li><li><p>条件判断有以下逻辑运算：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&lt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;=</span><br><span class="line">==　　//注意判断相等要用两个等号</span><br><span class="line">!=</span><br></pre></td></tr></table></figure></li><li><p>可以直接运算行内列的值($1、$2、$3)。</p></li></ol><h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><p>1）cut切割字符</p><ul><li>以“，”切割文件并取出第1列<br>cat  test.txt |cut -d ‘,’ -f 1| sort | uniq -c | sort -rn -k1 &gt; new_test.txt</li></ul><p>2）sort排序的时候注意默认是按照字典的方式排序，如果按照数字时则必须加上-n</p><ul><li>uniq去除重复，只能去除相邻的重复，所以要先排序，后去除重复</li></ul><table><thead><tr><th>命令</th><th>用途</th></tr></thead><tbody><tr><td>grep/egrep</td><td>关键字查找</td></tr><tr><td>sed</td><td>1.行的删除、添加、替换、选取 <br> 2.关键字替换</td></tr><tr><td>printf</td><td>文本格式化输出</td></tr><tr><td>awk</td><td>1. 将每行按分隔符拆分成列并选取某些列<br>2. 通过逻辑判断对不同行进行不同的处理<br>3.对一行中的几列数值进行计算</td></tr><tr><td>cat</td><td>切割字符</td></tr><tr><td>sort</td><td>排序</td></tr></tbody></table>]]></content>
     
@@ -94,8 +148,8 @@
     <title>Linux命令</title>
     <link href="http://yoursite.com/2018/10/30/Linux/Linux%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2018/10/30/Linux/Linux命令/</id>
-    <published>2018-10-30T06:58:48.000Z</published>
-    <updated>2018-11-02T03:02:13.607Z</updated>
+    <published>2018-10-30T12:00:00.000Z</published>
+    <updated>2018-11-04T11:08:15.027Z</updated>
     
     <content type="html"><![CDATA[<h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><ul><li>-n ： 依照数值的大小排序。(不加-n参数，默认按照字符ASSII码的排序 会出现如（1,11,2,3..）这样的排序)</li><li>-k 指定按某一列排序 从1开始。</li><li>-r: 以相反的顺序来排序。(默认是从小到大，加上-r即从大到小)</li></ul><hr><ul><li>-t 设定分隔符,使用指定的分隔符代替非空格到空格的转换</li><li>-b   忽略每行前面开始出的空格字符。</li><li>-c   检查文件是否已经按照顺序排序。</li><li>-d   排序时，处理英文字母、数字及空格字符外，忽略其他的字符。</li><li>-f   排序时，将小写字母视为大写字母。</li><li>-i   排序时，除了040至176之间的ASCII字符外，忽略其他的字符。</li><li>-m   将几个排序好的文件进行合并。</li><li>-M   将前面3个字母依照月份的缩写进行排序。</li><li>-o&lt;输出文件&gt;   将排序后的结果存入指定的文件。</li><li>+&lt;起始栏位&gt;-&lt;结束栏位&gt;   以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。<br>sort -n -k 2 -t’-‘ test.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//原来的内容</span><br><span class="line">[root@h2 ~]# cat test.txt</span><br><span class="line">2018-12-01</span><br><span class="line">2013-01-08</span><br><span class="line">2015-10-24</span><br><span class="line">2016-04-25</span><br><span class="line"></span><br><span class="line">[root@h2 ~]# sort -nk2 -t&apos;-&apos; test.txt</span><br><span class="line">2013-01-08</span><br><span class="line">2016-04-25</span><br><span class="line">2015-10-24</span><br><span class="line">2018-12-01</span><br></pre></td></tr></table></figure></li></ul><h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>head用于显示文件的开头的内容。在默认情况下，head命令显示文件的头10行内容。</p><ul><li>-n&lt;数字&gt; –lines=[-]K     ：指定显示头部内容的行数；如果附加”-“参数，则除了每个文件的最后K 行外显示<pre><code>剩余全部内容</code></pre></li><li>-v：总是显示文件名的头信息；</li><li>-q：不显示文件名的头信息。</li><li>-c,  –bytes=[-]K    显示每个文件的前K 字节内容</li></ul><h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>只过滤相邻的重复行。</p><ul><li>-c, –count        在每行前加上表示相应行目出现次数的前缀编号</li></ul><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><ul><li>find base_path 列出当前目录和子目录下的所有文件和文件夹</li><li>find path -name ‘*txt’ 根据文件名或者正则表达式匹配搜索</li><li>find path -iname ‘*txt’ 同上，忽略大小写</li><li>find path ! -name ‘*txt’ 对上面的搜索结果取反</li><li>find path -type d 根据文件类型搜索，d文件夹，f普通文件，etc</li><li>find path -type f -size +2k 根据文件大小搜索，+2k大于2k的文件，-2k小于2k的文件，2k等你2k的文件</li><li>find path -type f -name ‘*txt’ -delete 删除匹配到的文件</li><li>find path -mtime -2 查找文件更新日时在距现在时刻二天以内的文件</li><li>find path -mtime +2 查找文件更新日时在距现在时刻二天以上的文件</li><li>find path -mtime 2 查找文件更新日时在距现在时刻一天以上二天以内的文件</li><li>find path -mmin -2 查找文件更新日时在距现在时刻二分以内的文件</li><li>find path -mmin +2 查找文件更新日时在距现在时刻二分以上的文件</li><li>find path -mmin 2 查找文件更新日时在距现在时刻一分以上二分以内的文件</li><li>find path -perm 664 查找权限为664的文件或目录(需完全符合)</li><li>find path -empty 查找空文件或空目录</li><li>find path -empty -type f -print -delete查找空文件并删除</li><li>find path -size -10c 查找文件size小于10个字节的文件或目录</li><li>find path -size 10c 查找文件size等于10个字节的文件或目录</li><li>find path -size +10c 查找文件size大于10个字节的文件或目录</li><li>find path -size -10k 查找文件size小于10k的文件或目录</li><li>find path -size -10M 查找文件size小于10M的文件或目录</li><li>find path -size -10G 查找文件size小于10G的文件或目录</li></ul>]]></content>
     
@@ -197,34 +251,11 @@
   </entry>
   
   <entry>
-    <title>幽静的小路</title>
-    <link href="http://yoursite.com/2018/10/17/Journey/%E5%B9%BD%E9%9D%99%E7%9A%84%E5%B0%8F%E8%B7%AF/"/>
-    <id>http://yoursite.com/2018/10/17/Journey/幽静的小路/</id>
-    <published>2018-10-17T10:05:34.000Z</published>
-    <updated>2018-10-19T03:03:57.270Z</updated>
-    
-    <content type="html"><![CDATA[<p>  蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，<br>导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。<br>回想起来，当自己再经历一遍时，发现我还是不能改变环境和别人对我的影响，那时候的我是在感情用事吗？还是自己没有气度呢？<br>唯一能做的是改变自己，改变自己的心态和状态。</p><h2 id="人可以不认识人，但是灵魂认识灵魂"><a href="#人可以不认识人，但是灵魂认识灵魂" class="headerlink" title="人可以不认识人，但是灵魂认识灵魂"></a>人可以不认识人，但是灵魂认识灵魂</h2><h2 id="如果你抓住深渊不放，深渊也会抓住你不放"><a href="#如果你抓住深渊不放，深渊也会抓住你不放" class="headerlink" title="如果你抓住深渊不放，深渊也会抓住你不放"></a>如果你抓住深渊不放，深渊也会抓住你不放</h2><h2 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h2><p>   凡是有的，还要加给他，叫他多余。没有的，连他所有的，也要夺过来。任何时候，不要太悲伤，其实自己拥有很多，so far so good。</p><p>一个人有多好就有多坏，常怀慈悲之心，生而为人，务必善良。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，&lt;br&gt;导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。&lt;br&gt;回想起来，当自己再经历一遍时，发
-      
-    
-    </summary>
-    
-    
-      <category term="悟" scheme="http://yoursite.com/tags/%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【Java并发】Java多线程Future的使用</title>
     <link href="http://yoursite.com/2018/10/17/Java%E5%B9%B6%E5%8F%91/%E3%80%90Java%E5%B9%B6%E5%8F%91%E3%80%91Java%E5%A4%9A%E7%BA%BF%E7%A8%8BFuture%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/</id>
-    <published>2018-10-17T09:07:10.000Z</published>
-    <updated>2018-10-17T09:59:56.839Z</updated>
+    <published>2018-10-17T13:00:00.000Z</published>
+    <updated>2018-11-04T11:08:15.345Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Future模式简述"><a href="#Future模式简述" class="headerlink" title="Future模式简述"></a>Future模式简述</h2><ul><li>在传统单线程环境下，调用函数是同步的，必须等待程序返回结果后，才可进行其他处理。</li><li>Future模式下，调用方式改为异步。</li><li>Future模式的核心在于：充分利用主函数中的等待时间，利用等待时间处理其他任务，充分利用计算资源<br>示例代码：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManipulationDataTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ManipulationDataTask</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String data1 = data.toUpperCase();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理中..."</span>);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理完成,处理好的数据为"</span> + data1);</span><br><span class="line">        <span class="keyword">return</span> data1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Future;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException </span>&#123;</span><br><span class="line"></span><br><span class="line">        FutureTask&lt;String&gt; future1 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"abc"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future2 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"def"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future3 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"ghi"</span>));</span><br><span class="line">        ManipulationDataTask manipulationDataTask = <span class="keyword">new</span> ManipulationDataTask(<span class="string">"jkl"</span>);</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">        executor.submit(future1);</span><br><span class="line">        executor.submit(future2);</span><br><span class="line">        executor.submit(future3);</span><br><span class="line">        Future&lt;String&gt; future4 =executor.submit(manipulationDataTask);</span><br><span class="line">        System.out.println(<span class="string">"请求完毕！"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程先去做点别的事"</span>);</span><br><span class="line">            Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">            System.out.println(<span class="string">"主线程的事情做完了"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"主线程开始获取子任务处理完的结果"</span>);</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future1.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future2.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future3.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future4.get());</span><br><span class="line">        executor.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="程序运行结果："><a href="#程序运行结果：" class="headerlink" title="程序运行结果："></a>程序运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">请求完毕！</span><br><span class="line">主线程先去做点别的事</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理中...</span><br><span class="line">pool-1-thread-3业务处理线程处理中...</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为ABC</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理完成,处理好的数据为DEF</span><br><span class="line">pool-1-thread-3业务处理线程处理完成,处理好的数据为GHI</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为JKL</span><br><span class="line">主线程的事情做完了</span><br><span class="line">主线程开始获取子任务处理完的结果</span><br><span class="line">数据处理完成：ABC</span><br><span class="line">数据处理完成：DEF</span><br><span class="line">数据处理完成：GHI</span><br><span class="line">数据处理完成：JKL</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -240,6 +271,29 @@
     
     
       <category term="java并发" scheme="http://yoursite.com/tags/java%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>幽静的小路</title>
+    <link href="http://yoursite.com/2018/10/17/Journey/%E5%B9%BD%E9%9D%99%E7%9A%84%E5%B0%8F%E8%B7%AF/"/>
+    <id>http://yoursite.com/2018/10/17/Journey/幽静的小路/</id>
+    <published>2018-10-17T10:05:34.000Z</published>
+    <updated>2018-11-06T06:49:17.144Z</updated>
+    
+    <content type="html"><![CDATA[<p>  蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，<br>导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。<br>回想起来，当自己再经历一遍时，发现我还是不能改变环境和别人对我的影响，那时候的我是在感情用事吗？还是自己没有气度呢？<br>唯一能做的是改变自己，改变自己的心态和状态。</p><h2 id="人可以不认识人，但是灵魂认识灵魂"><a href="#人可以不认识人，但是灵魂认识灵魂" class="headerlink" title="人可以不认识人，但是灵魂认识灵魂"></a>人可以不认识人，但是灵魂认识灵魂</h2><h2 id="如果你抓住深渊不放，深渊也会抓住你不放"><a href="#如果你抓住深渊不放，深渊也会抓住你不放" class="headerlink" title="如果你抓住深渊不放，深渊也会抓住你不放"></a>如果你抓住深渊不放，深渊也会抓住你不放</h2><h2 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h2><p>   凡是有的，还要加给他，叫他多余。没有的，连他所有的，也要夺过来。任何时候，不要太悲伤，其实自己拥有很多，so far so good。</p><p>一个人有多好就有多坏，常怀慈悲之心，生而为人，务必善良。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;  蝴蝶效应的影响，在前期的时候，因为别人或者环境的影响，很长的一段时间，心情很悲伤，心态上的悲观，&lt;br&gt;导致后来的我遇到自己所爱的事物时，心中想着我本可以，却发现怎么都追赶不上了，前期的一次心态不好，会对后来的自己产生巨大的影响。&lt;br&gt;回想起来，当自己再经历一遍时，发
+      
+    
+    </summary>
+    
+    
+      <category term="悟" scheme="http://yoursite.com/tags/%E6%82%9F/"/>
     
   </entry>
   
