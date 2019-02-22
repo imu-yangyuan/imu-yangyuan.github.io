@@ -64,6 +64,299 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2019-02-19T12:10:03.000Z"><a href="/2019/02/19/Java/Java-线程池关闭/">2019-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/02/19/Java/Java-线程池关闭/">Java 线程池关闭</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void close() &#123;</span><br><span class="line">  if (scheduledExecutorService != null) &#123;</span><br><span class="line">    scheduledExecutorService.shutdown();</span><br><span class="line">    try &#123;</span><br><span class="line">      if (!scheduledExecutorService.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">        scheduledExecutorService.shutdownNow();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">      scheduledExecutorService.shutdownNow();</span><br><span class="line">    &#125;</span><br><span class="line">    scheduledExecutorService = null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-02-19T09:20:56.000Z"><a href="/2019/02/19/Java并发/【Java并发】java线程池/">2019-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/02/19/Java并发/【Java并发】java线程池/">【Java并发】java线程池</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="1-Executor"><a href="#1-Executor" class="headerlink" title="1. Executor"></a>1. Executor</h2><ul>
+<li>Executor是线程池的顶级接口，只有一个方法execute()</li>
+<li>ExecutorService是Executor的子接口，提供了线程池生命周期管理的方法，一个可跟踪一个或多个异步任务执行情况返回Future的方法。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>execute()</td>
+<td>执行任务</td>
+</tr>
+<tr>
+<td>shutdown()</td>
+<td>调用后不再接收新任务，如果里面有任务，就执行完</td>
+</tr>
+<tr>
+<td>shutdownNow()</td>
+<td>调用后不再接收新任务，取消等待中的任务，返回等待执行的任务的list；有正在执行的任务，会尝试停止</td>
+</tr>
+<tr>
+<td>isShutdown()</td>
+<td>判断线程池是否完全停止</td>
+</tr>
+<tr>
+<td>isTerminated()</td>
+<td>判断线程池有任务在执行</td>
+</tr>
+<tr>
+<td>submit()</td>
+<td>提交带返回值的任务，返回值封装到Future中，通过Future.get()可以获取返回值</td>
+</tr>
+<tr>
+<td>invokeAll()</td>
+<td>执行一组任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-ThreadPoolExecutor"><a href="#2-ThreadPoolExecutor" class="headerlink" title="2. ThreadPoolExecutor"></a>2. ThreadPoolExecutor</h2><h3 id="2-1-构造方法"><a href="#2-1-构造方法" class="headerlink" title="2.1 构造方法"></a>2.1 构造方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(</span><br><span class="line">    int corePoolSize, //核心线程数</span><br><span class="line">    int maximumPoolSize, //最大线程数</span><br><span class="line">    long keepAliveTime, //保持存活时间</span><br><span class="line">    TimeUnit unit, //时间单位</span><br><span class="line">    BlockingQueue&lt;Runnable&gt; workQueue, //阻塞队列</span><br><span class="line">    ThreadFactory threadFactory, //线程工厂</span><br><span class="line">    RejectedExecutionHandler handler //异常捕获器</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-TimeUnit-unit"><a href="#2-2-TimeUnit-unit" class="headerlink" title="2.2 TimeUnit unit"></a>2.2 TimeUnit unit</h3><p>参数keepAliveTime的时间单位，有7种取值</p>
+<ul>
+<li>TimeUnit.DAYS //天</li>
+<li>TimeUnit.HOURS //小时</li>
+<li>TimeUnit.MINUTES //分钟</li>
+<li>TimeUnit.SECONDS //秒</li>
+<li>TimeUnit.MILLISECONDS //毫秒</li>
+<li>TimeUnit.MICROSECONDS //微妙</li>
+<li>TimeUnit.NANOSECONDS //纳秒<h3 id="2-3-keepAliveTime"><a href="#2-3-keepAliveTime" class="headerlink" title="2.3 keepAliveTime"></a>2.3 keepAliveTime</h3>当线程空闲时，所允许保存的最大时间，超过这个时间，线程将被释放销毁，但只针对于非核心线程。<h2 id="3-阻塞队列"><a href="#3-阻塞队列" class="headerlink" title="3. 阻塞队列"></a>3. 阻塞队列</h2><h3 id="3-1-BlockingQueue"><a href="#3-1-BlockingQueue" class="headerlink" title="3.1 BlockingQueue"></a>3.1 BlockingQueue</h3>|阻塞队列              | 功能描述 |<br>|—|—|<br>|BlockingQueue          | 阻塞队列的顶级接口，主要用于实现生产者消费者队列  |<br>|BlockingDeque          | 双端队列  |<br>|SynchronousQueue      | 同步队列，无界队列，直接提交策略，交替队列，在某次添加元素后必须等待其他线程取走后才能继续添加  |<br>|LinkedBlockingQueue   | 无界队列，基于链表的阻塞队列，可以并发运行，FIFO    |<br>|ArrayBlockingQueue      | 基于数组的有界(固定大小的数组)阻塞队列，只有put方法和take方法才具有阻塞功能，公平性 fairness  |<br>|PriorityBlockingQueue |  基于优先级的阻塞队列，依据对象的自然排序顺序或者是构造函数所带的Comparator决定的顺序           |<br>|DelayQueue              |  延时队列|<h2 id="4-线程池工具类Executors"><a href="#4-线程池工具类Executors" class="headerlink" title="4. 线程池工具类Executors"></a>4. 线程池工具类Executors</h2>|方法    |功能描述|<br>|—|—|<br>|newCachedThreadPool()    |创建一个可缓存的线程池|<br>|newFixedThreadPool()    |创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待|<br>|newScheduledThreadPool()|    创建一个定长线程池，支持定时及周期性任务执行。|<br>|newSingleThreadExecutor()|    创建单线程化线程池，始终保证线程池中会有一个线程在。当某线程死去，会找继任者|<br>|defaultThreadFactory()    |创建一个默认线程池工厂|</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-02-18T11:05:47.000Z"><a href="/2019/02/18/Java/Java创建Listener/">2019-02-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/02/18/Java/Java创建Listener/">Java创建Listener</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">import java.util.concurrent.ScheduledExecutorService;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">public class Listener implements Runnable&#123;</span><br><span class="line">    private ScheduledExecutorService scheduledExecutorService;</span><br><span class="line">    private static final int DEFAULT_INTERVAL = 100000;</span><br><span class="line"></span><br><span class="line">    public Listener() &#123;</span><br><span class="line">        int interval = DEFAULT_INTERVAL;</span><br><span class="line">        this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();</span><br><span class="line">        scheduledExecutorService.scheduleWithFixedDelay(this, 0, interval, TimeUnit.MILLISECONDS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        Thread.currentThread().setName(&quot;XXXListener&quot;);</span><br><span class="line">        System.out.println(&quot;exec check data.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public void close() &#123;</span><br><span class="line">        if (scheduledExecutorService != null) &#123;</span><br><span class="line">            scheduledExecutorService.shutdown();</span><br><span class="line">            try &#123;</span><br><span class="line">                if (!scheduledExecutorService.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">                    scheduledExecutorService.shutdownNow();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                scheduledExecutorService.shutdownNow();</span><br><span class="line">            &#125;</span><br><span class="line">            scheduledExecutorService = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-02-18T10:47:36.000Z"><a href="/2019/02/18/Git/Git使用中遇到的问题/">2019-02-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/02/18/Git/Git使用中遇到的问题/">Git使用中遇到的问题</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="Git-放弃本地更改，拉取远端最新代码"><a href="#Git-放弃本地更改，拉取远端最新代码" class="headerlink" title="Git 放弃本地更改，拉取远端最新代码"></a>Git 放弃本地更改，拉取远端最新代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<h3 id="Git-commit信息写错了，更改commit信息"><a href="#Git-commit信息写错了，更改commit信息" class="headerlink" title="Git commit信息写错了，更改commit信息"></a>Git commit信息写错了，更改commit信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line">//执行此命令后，进入Vi编辑模式，第一句为Commit信息，更改保存退出即可</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-01-10T09:42:15.000Z"><a href="/2019/01/10/Spring-IOC/">2019-01-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/01/10/Spring-IOC/">Spring IOC</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-12-10T03:41:08.000Z"><a href="/2018/12/10/Git/Git强制覆盖本地代码/">2018-12-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/12/10/Git/Git强制覆盖本地代码/">Git强制覆盖本地代码</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="git-强制覆盖"><a href="#git-强制覆盖" class="headerlink" title="git 强制覆盖"></a>git 强制覆盖</h3><pre><code>git fetch --all
+git reset --hard origin/master
+git pull
+</code></pre><h3 id="单条执行"><a href="#单条执行" class="headerlink" title="单条执行"></a>单条执行</h3><ul>
+<li>git fetch –all &amp;&amp; git reset –hard origin/master &amp;&amp; git pull</li>
+</ul>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/git/">git</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2018-11-08T03:44:59.000Z"><a href="/2018/11/08/React学习/React总结/">2018-11-08</a></time>
       
       
@@ -338,525 +631,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-30T13:00:00.000Z"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">2018-10-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/30/Linux/Linux文本处理常用命令/">Linux文本处理常用命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Linux文本处理常用命令：<strong>grep、sed、printf、awk、cut、sort</strong></p>
-<h2 id="1-grep"><a href="#1-grep" class="headerlink" title="1. grep"></a>1. grep</h2><p>按行查找字符，输出包含字符的行<br>用法</p>
-<ol>
-<li>grep ‘key’ test.txt</li>
-<li>cat test.txt|grep ‘key’</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>含义及示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-n</td>
-<td>输出结果加行号</td>
-</tr>
-<tr>
-<td>–color=auto</td>
-<td>匹配的关键字高亮显示</td>
-</tr>
-<tr>
-<td>-A2</td>
-<td>输出匹配行的后两行</td>
-</tr>
-<tr>
-<td>-B2</td>
-<td>输出匹配行的前两行</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>反向查找，即输出不包含关键字的行</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>关键字匹配时忽略关键字大小写</td>
-</tr>
-</tbody>
-</table>
-<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;o\&#123;3\&#125;&apos;　　//查找两个o，这里需要注意，&#123;&#125;在shell里有特殊意义，因此需要转义。</span><br></pre></td></tr></table></figure></p>
-<h4 id="egrep"><a href="#egrep" class="headerlink" title="egrep:"></a>egrep:</h4><p>正则表达式分为基本正则表达式和扩展正则表达式，grep只支持基本正则表达式，如果要使用扩展正则表达式，需要使用egrep命令<br>列如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep &apos;123|1234&apos; //查找123或1234</span><br><span class="line">egrep &apos;1(23|234)5&apos; //查找1235或12345</span><br><span class="line">egrep &apos;1(23)+45&apos; //查找1X45，其中X是一个或一个以上的‘23’字符串</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-sed"><a href="#2-sed" class="headerlink" title="2.sed"></a>2.sed</h2><p>sed可以用来做<strong>行删除、行新增、行选取、行替换、字符串替换</strong><br>使用方式：cat test.txt | sed ‘2d’  或者 sed ‘2d’test.txt</p>
-<ol>
-<li>行删除<br>sed ‘2,5d’ //删除第2-5行<br>sed ‘3,$d’ //删除第3到最后一行<br>sed ‘/^$/d’//删除空行</li>
-<li>行新增<br>sed ‘2a abc’ //在第二行下面追加一行“abc”，a代表append<br>sed ‘2i abc’ //在第二行上面插入一行 “abc”，i代表insert<br>sed ‘2a a\<br>b\<br>c’　　//在第二行下面追加三行 “a”、”b”、”c”，只需要每行结尾加”\”即可。</li>
-<li>行选取<br>sed -n ‘7,9p’　　//选取第5到7行输出，必须加-n参数，不然效果就是所有行都被输出，而7到9行输出两次。</li>
-<li>行替换<br>sed ‘2,5c abc’　　//将第2到5行替换为一行字符串”abc”</li>
-<li>字符串替换<br>sed ‘s/要被替换的字符串/新的字符串/g’ /可以是#号之类的，在被替换的字符串包含/时，可以考虑别的分隔符。要被替换的字符串可以是<br>正则表达式</li>
-</ol>
-<p>注意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">操作特定区间或规则的行</span><br><span class="line">sed &apos;8,$s/aa/AA/g&apos; test.txt 对第8行到文件末尾的所有行进行搜索替换操作</span><br><span class="line">sed &apos;/^[0-9]/s/aa/AA/g&apos; test.txt 正则表达式表示对所有以数字开头的行，执行s操作</span><br><span class="line"></span><br><span class="line">sed的正则中  \(\)  和 \&#123;m,n\&#125; 需要转义</span><br><span class="line">. 表示任意字符</span><br><span class="line">* 表示零个或者多个</span><br><span class="line">\+ 一次或多次　　</span><br><span class="line">\? 零次或一次</span><br><span class="line">\| 表示或语法</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-printf"><a href="#3-printf" class="headerlink" title="3. printf"></a>3. printf</h2><p>格式化并打印数据<br>printf ‘%10s %10s %10s %10s %10s \n’ <code>cat test.txt</code>    %10s代表这一列的宽度固定为10个字符<br>%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐）</p>
-<h2 id="4-awk"><a href="#4-awk" class="headerlink" title="4. awk"></a>4. awk</h2><p>NF ：每一行分隔后的列数<br>NR ：行号<br>FS=”,”：以”,”分割行<br>cat test.txt |awk ‘NR==1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,”Total”};NR&gt;1 {printf “%10s %10s %10s %10s %10s \n”,$1,$2,$3,$4,$2+$3+$4}’</p>
-<ol>
-<li>加入条件判断后，awk的格式为： awk ‘条件1 {命令1};条件2{命令2}’</li>
-<li><p>条件判断有以下逻辑运算：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&lt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;=</span><br><span class="line">==　　//注意判断相等要用两个等号</span><br><span class="line">!=</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以直接运算行内列的值($1、$2、$3)。</p>
-</li>
-</ol>
-<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><p>1）cut切割字符</p>
-<ul>
-<li>以“，”切割文件并取出第1列<br>cat  test.txt |cut -d ‘,’ -f 1| sort | uniq -c | sort -rn -k1 &gt; new_test.txt</li>
-</ul>
-<p>2）sort排序的时候注意默认是按照字典的方式排序，如果按照数字时则必须加上-n</p>
-<ul>
-<li>uniq去除重复，只能去除相邻的重复，所以要先排序，后去除重复</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>grep/egrep</td>
-<td>关键字查找</td>
-</tr>
-<tr>
-<td>sed</td>
-<td>1.行的删除、添加、替换、选取 <br> 2.关键字替换</td>
-</tr>
-<tr>
-<td>printf</td>
-<td>文本格式化输出</td>
-</tr>
-<tr>
-<td>awk</td>
-<td>1. 将每行按分隔符拆分成列并选取某些列<br>2. 通过逻辑判断对不同行进行不同的处理<br>3.对一行中的几列数值进行计算</td>
-</tr>
-<tr>
-<td>cat</td>
-<td>切割字符</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>排序</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/linux/">linux</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-30T12:00:00.000Z"><a href="/2018/10/30/Linux/Linux命令/">2018-10-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/30/Linux/Linux命令/">Linux命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><ul>
-<li>-n ： 依照数值的大小排序。(不加-n参数，默认按照字符ASSII码的排序 会出现如（1,11,2,3..）这样的排序)</li>
-<li>-k 指定按某一列排序 从1开始。</li>
-<li>-r: 以相反的顺序来排序。(默认是从小到大，加上-r即从大到小)</li>
-</ul>
-<hr>
-<ul>
-<li>-t 设定分隔符,使用指定的分隔符代替非空格到空格的转换</li>
-<li>-b   忽略每行前面开始出的空格字符。</li>
-<li>-c   检查文件是否已经按照顺序排序。</li>
-<li>-d   排序时，处理英文字母、数字及空格字符外，忽略其他的字符。</li>
-<li>-f   排序时，将小写字母视为大写字母。</li>
-<li>-i   排序时，除了040至176之间的ASCII字符外，忽略其他的字符。</li>
-<li>-m   将几个排序好的文件进行合并。</li>
-<li>-M   将前面3个字母依照月份的缩写进行排序。</li>
-<li>-o&lt;输出文件&gt;   将排序后的结果存入指定的文件。</li>
-<li>+&lt;起始栏位&gt;-&lt;结束栏位&gt;   以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。<br>sort -n -k 2 -t’-‘ test.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//原来的内容</span><br><span class="line">[root@h2 ~]# cat test.txt</span><br><span class="line">2018-12-01</span><br><span class="line">2013-01-08</span><br><span class="line">2015-10-24</span><br><span class="line">2016-04-25</span><br><span class="line"></span><br><span class="line">[root@h2 ~]# sort -nk2 -t&apos;-&apos; test.txt</span><br><span class="line">2013-01-08</span><br><span class="line">2016-04-25</span><br><span class="line">2015-10-24</span><br><span class="line">2018-12-01</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>head用于显示文件的开头的内容。在默认情况下，head命令显示文件的头10行内容。</p>
-<ul>
-<li>-n&lt;数字&gt; –lines=[-]K     ：指定显示头部内容的行数；如果附加”-“参数，则除了每个文件的最后K 行外显示<pre><code>剩余全部内容
-</code></pre></li>
-<li>-v：总是显示文件名的头信息；</li>
-<li>-q：不显示文件名的头信息。</li>
-<li>-c,  –bytes=[-]K    显示每个文件的前K 字节内容</li>
-</ul>
-<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>只过滤相邻的重复行。</p>
-<ul>
-<li>-c, –count        在每行前加上表示相应行目出现次数的前缀编号</li>
-</ul>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><ul>
-<li>find base_path 列出当前目录和子目录下的所有文件和文件夹</li>
-<li>find path -name ‘*txt’ 根据文件名或者正则表达式匹配搜索</li>
-<li>find path -iname ‘*txt’ 同上，忽略大小写</li>
-<li>find path ! -name ‘*txt’ 对上面的搜索结果取反</li>
-<li>find path -type d 根据文件类型搜索，d文件夹，f普通文件，etc</li>
-<li>find path -type f -size +2k 根据文件大小搜索，+2k大于2k的文件，-2k小于2k的文件，2k等你2k的文件</li>
-<li>find path -type f -name ‘*txt’ -delete 删除匹配到的文件</li>
-<li>find path -mtime -2 查找文件更新日时在距现在时刻二天以内的文件</li>
-<li>find path -mtime +2 查找文件更新日时在距现在时刻二天以上的文件</li>
-<li>find path -mtime 2 查找文件更新日时在距现在时刻一天以上二天以内的文件</li>
-<li>find path -mmin -2 查找文件更新日时在距现在时刻二分以内的文件</li>
-<li>find path -mmin +2 查找文件更新日时在距现在时刻二分以上的文件</li>
-<li>find path -mmin 2 查找文件更新日时在距现在时刻一分以上二分以内的文件</li>
-<li>find path -perm 664 查找权限为664的文件或目录(需完全符合)</li>
-<li>find path -empty 查找空文件或空目录</li>
-<li>find path -empty -type f -print -delete查找空文件并删除</li>
-<li>find path -size -10c 查找文件size小于10个字节的文件或目录</li>
-<li>find path -size 10c 查找文件size等于10个字节的文件或目录</li>
-<li>find path -size +10c 查找文件size大于10个字节的文件或目录</li>
-<li>find path -size -10k 查找文件size小于10k的文件或目录</li>
-<li>find path -size -10M 查找文件size小于10M的文件或目录</li>
-<li>find path -size -10G 查找文件size小于10G的文件或目录</li>
-</ul>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/linux/">linux</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-29T06:16:57.000Z"><a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">2018-10-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/29/Git/Git创建本地分支并关联远程分支/">Git创建本地分支并关联远程分支</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h2><ul>
-<li>git branch 分支名</li>
-</ul>
-<h2 id="切换到本地分支"><a href="#切换到本地分支" class="headerlink" title="切换到本地分支"></a>切换到本地分支</h2><ul>
-<li>git checkout 分支名</li>
-</ul>
-<h2 id="创建本地分支并切换到该分支"><a href="#创建本地分支并切换到该分支" class="headerlink" title="创建本地分支并切换到该分支"></a>创建本地分支并切换到该分支</h2><ul>
-<li>git checkout -b 分支名</li>
-</ul>
-<h2 id="提交本地分支到远程仓库"><a href="#提交本地分支到远程仓库" class="headerlink" title="提交本地分支到远程仓库"></a>提交本地分支到远程仓库</h2><ul>
-<li>git push origin 本地分支名</li>
-</ul>
-<h2 id="将新建的本地分支与远程分支关联"><a href="#将新建的本地分支与远程分支关联" class="headerlink" title="将新建的本地分支与远程分支关联"></a>将新建的本地分支与远程分支关联</h2><p>-git branch –set-upstream-to=origin/远程分支名  本地分支名<br> 使用git branch –set-upstream 本地分支名 origin/远程分支名 命令报如下错误<br>fatal: the ‘–set-upstream’ option is no longer supported. Please use ‘–track’ or ‘–set-upstream-to’ instead.</p>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/git/">git</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-19T09:28:38.000Z"><a href="/2018/10/19/Git/Git常用命令/">2018-10-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/19/Git/Git常用命令/">Git常用命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li>git init<ul>
-<li>在本地当前目录初始化一个git仓库</li>
-</ul>
-</li>
-<li><p>git clone</p>
-</li>
-<li><p>git status</p>
-</li>
-<li><p>git log</p>
-</li>
-<li><p>git add</p>
-</li>
-<li><p>git diff</p>
-</li>
-<li><p>git commit</p>
-</li>
-<li><p>git reset</p>
-</li>
-<li><p>git revert</p>
-</li>
-<li><p>git rm</p>
-</li>
-<li><p>git clean</p>
-</li>
-<li><p>git mv</p>
-</li>
-<li><p>git stash</p>
-</li>
-<li><p>git branch</p>
-</li>
-<li><p>git checkout</p>
-</li>
-<li><p>git merge</p>
-</li>
-<li><p>git tag</p>
-</li>
-<li><p>git remote</p>
-</li>
-<li><p>git fetch</p>
-</li>
-<li><p>git pull</p>
-</li>
-<li><p>git rebase</p>
-</li>
-<li><p>git push</p>
-</li>
-</ul>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/git/">git</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-19T08:08:41.000Z"><a href="/2018/10/19/DesignPattern/设计模式/">2018-10-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/19/DesignPattern/设计模式/">设计模式</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><img src="/2018/10/19/DesignPattern/设计模式/designpatternbg.jpg" alt=""></p>
-<h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><h4 id="设计模式分为三大类："><a href="#设计模式分为三大类：" class="headerlink" title="设计模式分为三大类："></a>设计模式分为三大类：</h4><ul>
-<li>创建型模式，共五种：<ul>
-<li>工厂方法模式，抽象工厂模式，单例模式，建造者模式，原型模式</li>
-</ul>
-</li>
-<li>结构型模式，共七种：<ul>
-<li>适配器模式，装饰器模式，代理模式，外观模式，桥接模式，组合模式，享元模式</li>
-</ul>
-</li>
-<li>行为型模式，共十一种：<ul>
-<li>策略模式，模板方法模式，观察者模式，迭代子模式，责任链模式，命令模式，备忘录模式，状态模式，访问者模式，<br>中介者模式，解释器模式</li>
-</ul>
-</li>
-</ul>
-<h2 id="设计模式的六大原则"><a href="#设计模式的六大原则" class="headerlink" title="设计模式的六大原则"></a>设计模式的六大原则</h2><h4 id="1、单一职责原则"><a href="#1、单一职责原则" class="headerlink" title="1、单一职责原则"></a>1、单一职责原则</h4><ul>
-<li>不要存在多于一个导致类变更的原因，也就是说每个类应该实现单一的职责，如若不然，就应该把类拆分。</li>
-</ul>
-<h4 id="2、里氏替换原则（Liskov-Substitution-Principle）"><a href="#2、里氏替换原则（Liskov-Substitution-Principle）" class="headerlink" title="2、里氏替换原则（Liskov Substitution Principle）"></a>2、里氏替换原则（Liskov Substitution Principle）</h4><pre><code>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。—— From Baidu 百科
-
-历史替换原则中，子类对父类的方法尽量不要重写和重载。因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。
-</code></pre><h4 id="3、依赖倒转原则（Dependence-Inversion-Principle）"><a href="#3、依赖倒转原则（Dependence-Inversion-Principle）" class="headerlink" title="3、依赖倒转原则（Dependence Inversion Principle）"></a>3、依赖倒转原则（Dependence Inversion Principle）</h4><ul>
-<li>这个是开闭原则的基础，具体内容：面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。</li>
-</ul>
-<h4 id="4、接口隔离原则（Interface-Segregation-Principle）"><a href="#4、接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="4、接口隔离原则（Interface Segregation Principle）"></a>4、接口隔离原则（Interface Segregation Principle）</h4><ul>
-<li>每个接口中不存在子类用不到却必须实现的方法，如果不然，就要将接口拆分。使用多个隔离的接口，比使用单个接口（多个接口方法集合到一个的接口）要好。</li>
-</ul>
-<h4 id="5、迪米特法则（最少知道原则）（Demeter-Principle）"><a href="#5、迪米特法则（最少知道原则）（Demeter-Principle）" class="headerlink" title="5、迪米特法则（最少知道原则）（Demeter Principle）"></a>5、迪米特法则（最少知道原则）（Demeter Principle）</h4><ul>
-<li><p>一个类对自己依赖的类知道的越少越好。也就是说无论被依赖的类多么复杂，都应该将逻辑封装在方法的内部，通过public方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。</p>
-</li>
-<li><p>最少知道原则的另一个表达方式是：只与直接的朋友通信。类之间只要有耦合关系，就叫朋友关系。耦合分为依赖、关联、聚合、组合等。我们称出现为成员变量、方法参数、方法返回值中的类为直接朋友。局部变量、临时变量则不是直接的朋友。我们要求陌生的类不要作为局部变量出现在类中。</p>
-</li>
-</ul>
-<h4 id="6、合成复用原则（Composite-Reuse-Principle）"><a href="#6、合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="6、合成复用原则（Composite Reuse Principle）"></a>6、合成复用原则（Composite Reuse Principle）</h4><ul>
-<li>原则是尽量首先使用合成/聚合的方式，而不是使用继承。</li>
-</ul>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/设计模式/">设计模式</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-17T13:00:00.000Z"><a href="/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/">2018-10-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2018/10/17/Java并发/【Java并发】Java多线程Future的使用/">【Java并发】Java多线程Future的使用</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Future模式简述"><a href="#Future模式简述" class="headerlink" title="Future模式简述"></a>Future模式简述</h2><ul>
-<li>在传统单线程环境下，调用函数是同步的，必须等待程序返回结果后，才可进行其他处理。</li>
-<li>Future模式下，调用方式改为异步。</li>
-<li>Future模式的核心在于：充分利用主函数中的等待时间，利用等待时间处理其他任务，充分利用计算资源<br>示例代码：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManipulationDataTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ManipulationDataTask</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String data1 = data.toUpperCase();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理中..."</span>);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"业务处理线程处理完成,处理好的数据为"</span> + data1);</span><br><span class="line">        <span class="keyword">return</span> data1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Future;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException </span>&#123;</span><br><span class="line"></span><br><span class="line">        FutureTask&lt;String&gt; future1 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"abc"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future2 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"def"</span>));</span><br><span class="line">        FutureTask&lt;String&gt; future3 = <span class="keyword">new</span> FutureTask&lt;String&gt;(<span class="keyword">new</span> ManipulationDataTask(<span class="string">"ghi"</span>));</span><br><span class="line">        ManipulationDataTask manipulationDataTask = <span class="keyword">new</span> ManipulationDataTask(<span class="string">"jkl"</span>);</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">        executor.submit(future1);</span><br><span class="line">        executor.submit(future2);</span><br><span class="line">        executor.submit(future3);</span><br><span class="line">        Future&lt;String&gt; future4 =executor.submit(manipulationDataTask);</span><br><span class="line">        System.out.println(<span class="string">"请求完毕！"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程先去做点别的事"</span>);</span><br><span class="line">            Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">            System.out.println(<span class="string">"主线程的事情做完了"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"主线程开始获取子任务处理完的结果"</span>);</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future1.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future2.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future3.get());</span><br><span class="line">        System.out.println(<span class="string">"数据处理完成："</span> + future4.get());</span><br><span class="line">        executor.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="程序运行结果："><a href="#程序运行结果：" class="headerlink" title="程序运行结果："></a>程序运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">请求完毕！</span><br><span class="line">主线程先去做点别的事</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理中...</span><br><span class="line">pool-1-thread-3业务处理线程处理中...</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为ABC</span><br><span class="line">pool-1-thread-1业务处理线程处理中...</span><br><span class="line">pool-1-thread-2业务处理线程处理完成,处理好的数据为DEF</span><br><span class="line">pool-1-thread-3业务处理线程处理完成,处理好的数据为GHI</span><br><span class="line">pool-1-thread-1业务处理线程处理完成,处理好的数据为JKL</span><br><span class="line">主线程的事情做完了</span><br><span class="line">主线程开始获取子任务处理完的结果</span><br><span class="line">数据处理完成：ABC</span><br><span class="line">数据处理完成：DEF</span><br><span class="line">数据处理完成：GHI</span><br><span class="line">数据处理完成：JKL</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/java并发/">java并发</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </nav>
@@ -877,23 +656,23 @@
   <ul class="entry">
     
       <li>
-        <a href="/2018/11/08/React学习/React总结/">React总结</a>
+        <a href="/2019/02/19/Java/Java-线程池关闭/">Java 线程池关闭</a>
       </li>
     
       <li>
-        <a href="/2018/11/05/缓存/Redis和Memcache/">Redis和Memcache</a>
+        <a href="/2019/02/19/Java并发/【Java并发】java线程池/">【Java并发】java线程池</a>
       </li>
     
       <li>
-        <a href="/2018/11/02/Kafka/kafka/">kafka</a>
+        <a href="/2019/02/18/Java/Java创建Listener/">Java创建Listener</a>
       </li>
     
       <li>
-        <a href="/2018/10/31/Linux/Linux常用命令/">Linux常用命令</a>
+        <a href="/2019/02/18/Git/Git使用中遇到的问题/">Git使用中遇到的问题</a>
       </li>
     
       <li>
-        <a href="/2018/10/30/Linux/Linux文本处理常用命令/">Linux文本处理常用命令</a>
+        <a href="/2019/01/10/Spring-IOC/">Spring IOC</a>
       </li>
     
   </ul>
@@ -907,11 +686,11 @@
   
     <li><a href="/tags/AOP/">AOP</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>2</small></li>
   
     <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
   
-    <li><a href="/tags/git/">git</a><small>3</small></li>
+    <li><a href="/tags/git/">git</a><small>4</small></li>
   
     <li><a href="/tags/java并发/">java并发</a><small>1</small></li>
   
@@ -933,7 +712,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
@@ -943,7 +722,7 @@
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2018 yangyuan
+  &copy; 2019 yangyuan
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>

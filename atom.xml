@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-30T11:15:05.460Z</updated>
+  <updated>2019-02-19T07:21:49.568Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,131 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 线程池关闭</title>
+    <link href="http://yoursite.com/2019/02/19/Java/Java-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%85%B3%E9%97%AD/"/>
+    <id>http://yoursite.com/2019/02/19/Java/Java-线程池关闭/</id>
+    <published>2019-02-19T12:10:03.000Z</published>
+    <updated>2019-02-19T07:21:49.568Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void close() &#123;</span><br><span class="line">  if (scheduledExecutorService != null) &#123;</span><br><span class="line">    scheduledExecutorService.shutdown();</span><br><span class="line">    try &#123;</span><br><span class="line">      if (!scheduledExecutorService.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">        scheduledExecutorService.shutdownNow();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">      scheduledExecutorService.shutdownNow();</span><br><span class="line">    &#125;</span><br><span class="line">    scheduledExecutorService = null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】java线程池</title>
+    <link href="http://yoursite.com/2019/02/19/Java%E5%B9%B6%E5%8F%91/%E3%80%90Java%E5%B9%B6%E5%8F%91%E3%80%91java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>http://yoursite.com/2019/02/19/Java并发/【Java并发】java线程池/</id>
+    <published>2019-02-19T09:20:56.000Z</published>
+    <updated>2019-02-19T11:24:38.580Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-Executor"><a href="#1-Executor" class="headerlink" title="1. Executor"></a>1. Executor</h2><ul><li>Executor是线程池的顶级接口，只有一个方法execute()</li><li>ExecutorService是Executor的子接口，提供了线程池生命周期管理的方法，一个可跟踪一个或多个异步任务执行情况返回Future的方法。</li></ul><table><thead><tr><th>方法</th><th>功能描述</th></tr></thead><tbody><tr><td>execute()</td><td>执行任务</td></tr><tr><td>shutdown()</td><td>调用后不再接收新任务，如果里面有任务，就执行完</td></tr><tr><td>shutdownNow()</td><td>调用后不再接收新任务，取消等待中的任务，返回等待执行的任务的list；有正在执行的任务，会尝试停止</td></tr><tr><td>isShutdown()</td><td>判断线程池是否完全停止</td></tr><tr><td>isTerminated()</td><td>判断线程池有任务在执行</td></tr><tr><td>submit()</td><td>提交带返回值的任务，返回值封装到Future中，通过Future.get()可以获取返回值</td></tr><tr><td>invokeAll()</td><td>执行一组任务</td></tr></tbody></table><h2 id="2-ThreadPoolExecutor"><a href="#2-ThreadPoolExecutor" class="headerlink" title="2. ThreadPoolExecutor"></a>2. ThreadPoolExecutor</h2><h3 id="2-1-构造方法"><a href="#2-1-构造方法" class="headerlink" title="2.1 构造方法"></a>2.1 构造方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(</span><br><span class="line">    int corePoolSize, //核心线程数</span><br><span class="line">    int maximumPoolSize, //最大线程数</span><br><span class="line">    long keepAliveTime, //保持存活时间</span><br><span class="line">    TimeUnit unit, //时间单位</span><br><span class="line">    BlockingQueue&lt;Runnable&gt; workQueue, //阻塞队列</span><br><span class="line">    ThreadFactory threadFactory, //线程工厂</span><br><span class="line">    RejectedExecutionHandler handler //异常捕获器</span><br><span class="line">)</span><br></pre></td></tr></table></figure><h3 id="2-2-TimeUnit-unit"><a href="#2-2-TimeUnit-unit" class="headerlink" title="2.2 TimeUnit unit"></a>2.2 TimeUnit unit</h3><p>参数keepAliveTime的时间单位，有7种取值</p><ul><li>TimeUnit.DAYS //天</li><li>TimeUnit.HOURS //小时</li><li>TimeUnit.MINUTES //分钟</li><li>TimeUnit.SECONDS //秒</li><li>TimeUnit.MILLISECONDS //毫秒</li><li>TimeUnit.MICROSECONDS //微妙</li><li>TimeUnit.NANOSECONDS //纳秒<h3 id="2-3-keepAliveTime"><a href="#2-3-keepAliveTime" class="headerlink" title="2.3 keepAliveTime"></a>2.3 keepAliveTime</h3>当线程空闲时，所允许保存的最大时间，超过这个时间，线程将被释放销毁，但只针对于非核心线程。<h2 id="3-阻塞队列"><a href="#3-阻塞队列" class="headerlink" title="3. 阻塞队列"></a>3. 阻塞队列</h2><h3 id="3-1-BlockingQueue"><a href="#3-1-BlockingQueue" class="headerlink" title="3.1 BlockingQueue"></a>3.1 BlockingQueue</h3>|阻塞队列              | 功能描述 |<br>|—|—|<br>|BlockingQueue          | 阻塞队列的顶级接口，主要用于实现生产者消费者队列  |<br>|BlockingDeque          | 双端队列  |<br>|SynchronousQueue      | 同步队列，无界队列，直接提交策略，交替队列，在某次添加元素后必须等待其他线程取走后才能继续添加  |<br>|LinkedBlockingQueue   | 无界队列，基于链表的阻塞队列，可以并发运行，FIFO    |<br>|ArrayBlockingQueue      | 基于数组的有界(固定大小的数组)阻塞队列，只有put方法和take方法才具有阻塞功能，公平性 fairness  |<br>|PriorityBlockingQueue |  基于优先级的阻塞队列，依据对象的自然排序顺序或者是构造函数所带的Comparator决定的顺序           |<br>|DelayQueue              |  延时队列|<h2 id="4-线程池工具类Executors"><a href="#4-线程池工具类Executors" class="headerlink" title="4. 线程池工具类Executors"></a>4. 线程池工具类Executors</h2>|方法    |功能描述|<br>|—|—|<br>|newCachedThreadPool()    |创建一个可缓存的线程池|<br>|newFixedThreadPool()    |创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待|<br>|newScheduledThreadPool()|    创建一个定长线程池，支持定时及周期性任务执行。|<br>|newSingleThreadExecutor()|    创建单线程化线程池，始终保证线程池中会有一个线程在。当某线程死去，会找继任者|<br>|defaultThreadFactory()    |创建一个默认线程池工厂|</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-Executor&quot;&gt;&lt;a href=&quot;#1-Executor&quot; class=&quot;headerlink&quot; title=&quot;1. Executor&quot;&gt;&lt;/a&gt;1. Executor&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Executor是线程池的顶级接口，只有一个方法execut
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java创建Listener</title>
+    <link href="http://yoursite.com/2019/02/18/Java/Java%E5%88%9B%E5%BB%BAListener/"/>
+    <id>http://yoursite.com/2019/02/18/Java/Java创建Listener/</id>
+    <published>2019-02-18T11:05:47.000Z</published>
+    <updated>2019-02-19T07:05:11.756Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">import java.util.concurrent.ScheduledExecutorService;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">public class Listener implements Runnable&#123;</span><br><span class="line">    private ScheduledExecutorService scheduledExecutorService;</span><br><span class="line">    private static final int DEFAULT_INTERVAL = 100000;</span><br><span class="line"></span><br><span class="line">    public Listener() &#123;</span><br><span class="line">        int interval = DEFAULT_INTERVAL;</span><br><span class="line">        this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();</span><br><span class="line">        scheduledExecutorService.scheduleWithFixedDelay(this, 0, interval, TimeUnit.MILLISECONDS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        Thread.currentThread().setName(&quot;XXXListener&quot;);</span><br><span class="line">        System.out.println(&quot;exec check data.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public void close() &#123;</span><br><span class="line">        if (scheduledExecutorService != null) &#123;</span><br><span class="line">            scheduledExecutorService.shutdown();</span><br><span class="line">            try &#123;</span><br><span class="line">                if (!scheduledExecutorService.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">                    scheduledExecutorService.shutdownNow();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                scheduledExecutorService.shutdownNow();</span><br><span class="line">            &#125;</span><br><span class="line">            scheduledExecutorService = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git使用中遇到的问题</title>
+    <link href="http://yoursite.com/2019/02/18/Git/Git%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/02/18/Git/Git使用中遇到的问题/</id>
+    <published>2019-02-18T10:47:36.000Z</published>
+    <updated>2019-02-19T03:10:50.325Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Git-放弃本地更改，拉取远端最新代码"><a href="#Git-放弃本地更改，拉取远端最新代码" class="headerlink" title="Git 放弃本地更改，拉取远端最新代码"></a>Git 放弃本地更改，拉取远端最新代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure><h3 id="Git-commit信息写错了，更改commit信息"><a href="#Git-commit信息写错了，更改commit信息" class="headerlink" title="Git commit信息写错了，更改commit信息"></a>Git commit信息写错了，更改commit信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line">//执行此命令后，进入Vi编辑模式，第一句为Commit信息，更改保存退出即可</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;Git-放弃本地更改，拉取远端最新代码&quot;&gt;&lt;a href=&quot;#Git-放弃本地更改，拉取远端最新代码&quot; class=&quot;headerlink&quot; title=&quot;Git 放弃本地更改，拉取远端最新代码&quot;&gt;&lt;/a&gt;Git 放弃本地更改，拉取远端最新代码&lt;/h4&gt;&lt;figu
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Spring IOC</title>
+    <link href="http://yoursite.com/2019/01/10/Spring-IOC/"/>
+    <id>http://yoursite.com/2019/01/10/Spring-IOC/</id>
+    <published>2019-01-10T09:42:15.000Z</published>
+    <updated>2019-01-10T09:42:15.681Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git强制覆盖本地代码</title>
+    <link href="http://yoursite.com/2018/12/10/Git/Git%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81/"/>
+    <id>http://yoursite.com/2018/12/10/Git/Git强制覆盖本地代码/</id>
+    <published>2018-12-10T03:41:08.000Z</published>
+    <updated>2018-12-13T03:20:43.216Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="git-强制覆盖"><a href="#git-强制覆盖" class="headerlink" title="git 强制覆盖"></a>git 强制覆盖</h3><pre><code>git fetch --allgit reset --hard origin/mastergit pull</code></pre><h3 id="单条执行"><a href="#单条执行" class="headerlink" title="单条执行"></a>单条执行</h3><ul><li>git fetch –all &amp;&amp; git reset –hard origin/master &amp;&amp; git pull</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;git-强制覆盖&quot;&gt;&lt;a href=&quot;#git-强制覆盖&quot; class=&quot;headerlink&quot; title=&quot;git 强制覆盖&quot;&gt;&lt;/a&gt;git 强制覆盖&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;git fetch --all
+git reset --hard origi
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>React总结</title>
@@ -48,7 +173,7 @@
     <link href="http://yoursite.com/2018/11/05/%E7%BC%93%E5%AD%98/Redis%E5%92%8CMemcache/"/>
     <id>http://yoursite.com/2018/11/05/缓存/Redis和Memcache/</id>
     <published>2018-11-05T11:34:32.000Z</published>
-    <updated>2018-11-30T11:00:00.987Z</updated>
+    <updated>2019-02-18T10:43:33.176Z</updated>
     
     <content type="html"><![CDATA[<ul><li><strong>Redis和Memcahe的对比</strong><ul><li>Redis不仅支持键值对的存储，还支持list，set，hash，zset（有序集合）数据结构的存储<br>+</li></ul></li></ul>]]></content>
     
@@ -363,30 +488,6 @@
       <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
     
       <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github 提交代码 Emoji</title>
-    <link href="http://yoursite.com/2017/08/09/Git/GithubEmoji/"/>
-    <id>http://yoursite.com/2017/08/09/Git/GithubEmoji/</id>
-    <published>2017-08-09T15:55:41.000Z</published>
-    <updated>2018-10-15T08:05:35.888Z</updated>
-    
-    <content type="html"><![CDATA[<p>An emoji guide for your commit messages: <a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="noopener">gitmoji</a></p><table><thead><tr><th>Code</th><th>Emoji</th><th>描述</th></tr></thead><tbody><tr><td><code>:art:</code></td><td>:art:</td><td>改进代码的结构/格式</td></tr><tr><td><code>:zap:</code></td><td>:zap:</td><td>提高性能</td></tr><tr><td><code>:fire:</code></td><td>:fire:</td><td>删除代码或文件</td></tr><tr><td><code>:bug:</code></td><td>:bug:</td><td>修复bug</td></tr><tr><td><code>:ambulance:</code></td><td>:ambulance:</td><td>关键修补程序</td></tr><tr><td><code>:sparkles:</code></td><td>:sparkles:</td><td>引入新功能</td></tr><tr><td><code>:memo:</code></td><td>:memo:</td><td>写文档</td></tr><tr><td><code>:rocket:</code></td><td>:rocket:</td><td>部署项目</td></tr><tr><td><code>:lipstick:</code></td><td>:lipstick:</td><td>更新UI和样式文件</td></tr><tr><td><code>:tada:</code></td><td>:tada:</td><td>初始提交</td></tr><tr><td><code>:white_check_mark:</code></td><td>:white_check_mark:</td><td>添加测试</td></tr><tr><td><code>:lock:</code></td><td>:lock:</td><td>解决安全问题</td></tr><tr><td><code>:apple:</code></td><td>:apple:</td><td>修改 macOS 下的一些问题</td></tr><tr><td><code>:penguin:</code></td><td>:penguin:</td><td>修改 Linux 下的一些问题</td></tr><tr><td><code>:checkered_flag:</code></td><td>:checkered_flag:</td><td>修改 Windows 下的一些问题</td></tr><tr><td><code>:robot:</code></td><td>:robot:</td><td>修改 Android 下的一些问题</td></tr><tr><td><code>:green_apple:</code></td><td>:green_apple:</td><td>修改 IOS 下的一些问题</td></tr><tr><td><code>:bookmark:</code></td><td>:bookmark:</td><td>发布版本标签</td></tr><tr><td><code>:rotating_light:</code></td><td>:rotating_light:</td><td>移除 linter 警告</td></tr><tr><td><code>:construction:</code></td><td>:construction:</td><td>工作正在进行中</td></tr><tr><td><code>:green_heart:</code></td><td>:green_heart:</td><td>修复CI构建</td></tr><tr><td><code>:arrow_down:</code></td><td>:arrow_down:</td><td>降级依赖</td></tr><tr><td><code>:arrow_up:</code></td><td>:arrow_up:</td><td>更新依赖</td></tr><tr><td><code>:construction_worker:</code></td><td>:construction_worker:</td><td>添加CI构建系统</td></tr><tr><td><code>:chart_with_upwards_trend:</code></td><td>:chart_with_upwards_trend:</td><td>添加分析或跟踪代码</td></tr><tr><td><code>:hammer:</code></td><td>:hammer:</td><td>重构代码</td></tr><tr><td><code>:heavy_minus_sign:</code></td><td>:heavy_minus_sign:</td><td>删除依赖关系</td></tr><tr><td><code>:whale:</code></td><td>:whale:</td><td>关于Docker的工作</td></tr><tr><td><code>:heavy_plus_sign:</code></td><td>:heavy_plus_sign:</td><td>添加依赖关系</td></tr><tr><td><code>:wrench:</code></td><td>:wrench:</td><td>更改配置文件</td></tr><tr><td><code>:globe_with_meridians:</code></td><td>:globe_with_meridians:</td><td>国际化和本地化</td></tr><tr><td><code>:pencil2:</code></td><td>:pencil2:</td><td>修正打字错误</td></tr><tr><td><code>:hankey:</code></td><td>:hankey:</td><td>编写不好的代码，需要改进</td></tr><tr><td><code>:rewind:</code></td><td>:rewind:</td><td>还原更改</td></tr><tr><td><code>:twisted_rightwards_arrows:</code></td><td>:twisted_rightwards_arrows:</td><td>合并分支</td></tr><tr><td><code>:package:</code></td><td>:package:</td><td>更新已编译的文件或包</td></tr><tr><td><code>:alien:</code></td><td>:alien:</td><td>由于外部API更改而更新代码</td></tr><tr><td><code>:truck:</code></td><td>:truck:</td><td>移动或重命名文件</td></tr><tr><td><code>:page_facing_up:</code></td><td>:page_facing_up:</td><td>添加或更新许可证</td></tr><tr><td><code>:boom:</code></td><td>:boom:</td><td>引入爆炸改变</td></tr><tr><td><code>:bento:</code></td><td>:bento:</td><td>添加或更新资源</td></tr><tr><td><code>:ok_hand:</code></td><td>:ok_hand:</td><td>由于代码审查更改而更新代码</td></tr><tr><td><code>:wheelchair:</code></td><td>:wheelchair:</td><td>改善无障碍</td></tr><tr><td><code>:bulb:</code></td><td>:bulb:</td><td>文档化源代码</td></tr><tr><td><code>:beers:</code></td><td>:beers:</td><td>沉迷写代码</td></tr><tr><td><code>:speech_balloon:</code></td><td>:speech_balloon:</td><td>更新文本和常量</td></tr><tr><td><code>:card_file_box:</code></td><td>:card_file_box:</td><td>执行数据库相关更改</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;An emoji guide for your commit messages: &lt;a href=&quot;https://gitmoji.carloscuesta.me/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;gitmoji&lt;/a&gt;&lt;/p&gt;
-&lt;table
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
