@@ -162,7 +162,7 @@
 <li>TimeUnit.SECONDS //秒</li>
 <li>TimeUnit.MILLISECONDS //毫秒</li>
 <li>TimeUnit.MICROSECONDS //微妙</li>
-<li>TimeUnit.NANOSECONDS //纳秒<h3 id="2-3-keepAliveTime"><a href="#2-3-keepAliveTime" class="headerlink" title="2.3 keepAliveTime"></a>2.3 keepAliveTime</h3>当线程空闲时，所允许保存的最大时间，超过这个时间，线程将被释放销毁，但只针对于非核心线程。<h2 id="3-阻塞队列"><a href="#3-阻塞队列" class="headerlink" title="3. 阻塞队列"></a>3. 阻塞队列</h2><h3 id="3-1-BlockingQueue"><a href="#3-1-BlockingQueue" class="headerlink" title="3.1 BlockingQueue"></a>3.1 BlockingQueue</h3>| 阻塞队列              | 功能描述 |<br>| —– | —– |<br>|BlockingQueue          | 阻塞队列的顶级接口，主要用于实现生产者消费者队列  |<br>|BlockingDeque          | 双端队列  |<br>|SynchronousQueue      | 同步队列，无界队列，直接提交策略，交替队列，在某次添加元素后必须等待其他线程取走后才能继续添加  |<br>|LinkedBlockingQueue   | 无界队列，基于链表的阻塞队列，可以并发运行，FIFO    |<br>|ArrayBlockingQueue      | 基于数组的有界(固定大小的数组)阻塞队列，只有put方法和take方法才具有阻塞功能，公平性 fairness  |<br>|PriorityBlockingQueue |  基于优先级的阻塞队列，依据对象的自然排序顺序或者是构造函数所带的Comparator决定的顺序           |<br>|DelayQueue              |  延时队列|<h2 id="4-线程池工具类Executors"><a href="#4-线程池工具类Executors" class="headerlink" title="4. 线程池工具类Executors"></a>4. 线程池工具类Executors</h2>|方法    | 功能描述 |<br>| —– | —– |<br>|newCachedThreadPool()    |创建一个可缓存的线程池|<br>|newFixedThreadPool()    |创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待|<br>|newScheduledThreadPool()|    创建一个定长线程池，支持定时及周期性任务执行。|<br>|newSingleThreadExecutor()|    创建单线程化线程池，始终保证线程池中会有一个线程在。当某线程死去，会找继任者|<br>|defaultThreadFactory()    |创建一个默认线程池工厂|</li>
+<li>TimeUnit.NANOSECONDS //纳秒<h3 id="2-3-keepAliveTime"><a href="#2-3-keepAliveTime" class="headerlink" title="2.3 keepAliveTime"></a>2.3 keepAliveTime</h3>当线程空闲时，所允许保存的最大时间，超过这个时间，线程将被释放销毁，但只针对于非核心线程。<h2 id="3-阻塞队列"><a href="#3-阻塞队列" class="headerlink" title="3. 阻塞队列"></a>3. 阻塞队列</h2><h3 id="3-1-BlockingQueue"><a href="#3-1-BlockingQueue" class="headerlink" title="3.1 BlockingQueue"></a>3.1 BlockingQueue</h3>|阻塞队列              | 功能描述 |<br>|—|—|<br>|BlockingQueue          | 阻塞队列的顶级接口，主要用于实现生产者消费者队列  |<br>|BlockingDeque          | 双端队列  |<br>|SynchronousQueue      | 同步队列，无界队列，直接提交策略，交替队列，在某次添加元素后必须等待其他线程取走后才能继续添加  |<br>|LinkedBlockingQueue   | 无界队列，基于链表的阻塞队列，可以并发运行，FIFO    |<br>|ArrayBlockingQueue      | 基于数组的有界(固定大小的数组)阻塞队列，只有put方法和take方法才具有阻塞功能，公平性 fairness  |<br>|PriorityBlockingQueue |  基于优先级的阻塞队列，依据对象的自然排序顺序或者是构造函数所带的Comparator决定的顺序           |<br>|DelayQueue              |  延时队列|<h2 id="4-线程池工具类Executors"><a href="#4-线程池工具类Executors" class="headerlink" title="4. 线程池工具类Executors"></a>4. 线程池工具类Executors</h2>|方法    |功能描述|<br>|—|—|<br>|newCachedThreadPool()    |创建一个可缓存的线程池|<br>|newFixedThreadPool()    |创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待|<br>|newScheduledThreadPool()|    创建一个定长线程池，支持定时及周期性任务执行。|<br>|newSingleThreadExecutor()|    创建单线程化线程池，始终保证线程池中会有一个线程在。当某线程死去，会找继任者|<br>|defaultThreadFactory()    |创建一个默认线程池工厂|</li>
 </ul>
 
       
@@ -635,7 +635,7 @@ git pull
 <nav id="pagination">
   
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </nav>
@@ -700,8 +700,6 @@ git pull
   
     <li><a href="/tags/react/">react</a><small>1</small></li>
   
-    <li><a href="/tags/悟/">悟</a><small>1</small></li>
-  
     <li><a href="/tags/设计模式/">设计模式</a><small>1</small></li>
   
   </ul>
@@ -712,7 +710,7 @@ git pull
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/悟/" style="font-size: 10px;">悟</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/java并发/" style="font-size: 10px;">java并发</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
   </div>
 </div>
 
